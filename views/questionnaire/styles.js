@@ -103,5 +103,17 @@ export default styles = StyleSheet.create({
     },
     activityLevelTextSelected: {
       color: 'black'
+    },
+    icon: {
+      alignSelf: 'center',
+      paddingTop: 6,
+      paddingRight: 12,
+      fontSize: 24
+    },
+    tooltipText: {
+      fontSize: 12,
+      position: 'absolute',
+      bottom: -48,
+      left: 6
     }
 });
