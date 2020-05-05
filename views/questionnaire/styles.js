@@ -66,5 +66,42 @@ export default styles = StyleSheet.create({
       fontSize: 18,
       position: 'absolute',
       left: 0,
+    },
+    subtitle: {
+      marginTop: 16,
+      fontWeight: 'bold',
+      position: 'absolute',
+      left: '28%',
+    },
+    slider: {
+      width: 350,
+      height: 40,
+      marginLeft: 12,
+      marginTop: 24,
+    },
+    activityLevels: {
+      flexDirection: 'row',
+      marginHorizontal: 12
+    },
+    activityLevel: {
+      marginRight: 12,
+      backgroundColor: '#4B88B0',
+      height: 60,
+      width: 80,
+      justifyContent: 'center',
+      position: 'relative',
+      borderRadius: 45
+    },
+    sliderContainer: {
+      marginTop: 24
+    },
+    activityLevelText: {
+      fontSize: 14,
+      color: 'white',
+      fontWeight: 'bold',
+      alignSelf: 'center'
+    },
+    activityLevelTextSelected: {
+      color: 'black'
     }
 });

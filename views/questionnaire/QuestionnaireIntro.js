@@ -6,14 +6,15 @@ import { updateAge, updateSex, updateWeight, updateHeight } from '../../redux/ac
 import sex from '../../resources/sex';
 import styles from './styles';
 import QuestionnaireTitle from './QuestionnaireTitle';
+import QuestionnaireNextButton from './QuestionnaireNextButton';
 
-class Questionnaire1 extends React.Component {
+class QuestionnaireIntro extends React.Component {
     numberInput(text) {
         return text.replace(/\D/g,'');
     }
 
     render() {
-        const { sex: currentSex } = this.props;
+        const { age, sex: currentSex, height, weight } = this.props;
         
         return(
           <View style={styles.container}>
@@ -25,7 +26,7 @@ class Questionnaire1 extends React.Component {
                       <Input
                           keyboardType="number-pad"
                           onChangeText={(text)=> this.props.updateAge(this.numberInput(text))} 
-                          value={this.props.age}/>
+                          value={age}/>
                   </Item>
               </View>
 
@@ -56,7 +57,7 @@ class Questionnaire1 extends React.Component {
                       <Input
                           keyboardType="number-pad"
                           onChangeText={(text)=> this.props.updateWeight(this.numberInput(text))} 
-                          value={this.props.weight}/>
+                          value={weight}/>
                   </Item>
               </View>
 
@@ -66,7 +67,7 @@ class Questionnaire1 extends React.Component {
                   <Input
                       keyboardType="number-pad"
                       onChangeText={(text)=> this.props.updateHeight(this.numberInput(text))} 
-                      value={this.props.height}/>
+                      value={height}/>
                   </Item>
               </View>
             </View>
@@ -91,4 +92,4 @@ const mapDispatchToProps = dispatch => ({
   updateHeight: height => dispatch(updateHeight(height)),
 });
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Questionnaire1);
+  export default connect(mapStateToProps, mapDispatchToProps)(QuestionnaireIntro);

@@ -1,8 +1,10 @@
 import sex from '../resources/sex';
+import activityLevel from '../resources/activityLevel';
 
 export default defaultState = {
     age: '',
     sex: sex.UNDEFINED,
     weight: '',
-    height: ''
+    height: '',
+    activityLevel: activityLevel.SEDENTARY
 };

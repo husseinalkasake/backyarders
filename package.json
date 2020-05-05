@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/slider": "^2.0.9",
     "expo": "~37.0.3",
     "expo-font": "~8.1.0",
     "native-base": "^2.13.12",
