@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, KeyboardAvoidingView} from 'react-native';
 import { Input, Item, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { updateAge, updateSex, updateWeight, updateHeight } from '../../redux/actions';
@@ -17,7 +17,7 @@ class QuestionnaireIntro extends React.Component {
         const { age, sex: currentSex, height, weight } = this.props;
         
         return(
-          <View style={styles.container}>
+          <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <View style={styles.innerContainer}>
               <QuestionnaireTitle/>
               <View style={styles.field}>
@@ -73,7 +73,7 @@ class QuestionnaireIntro extends React.Component {
             </View>
 
             <QuestionnaireNextButton />
-          </View>
+          </KeyboardAvoidingView>
         );
     }
 };
