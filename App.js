@@ -117,6 +117,7 @@ function MainNav() {
         tabBarOptions={{
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
+          showLabel: false,
         }}
     >
       <Tab.Screen name="WeekWorkouts" component={DailyWorkout} />
