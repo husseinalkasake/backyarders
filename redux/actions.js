@@ -1,4 +1,4 @@
-import { UPDATE_AGE, UPDATE_SEX, UPDATE_HEIGHT, UPDATE_WEIGHT, UPDATE_ACTIVITY_LEVEL } from './action_types';
+import { UPDATE_AGE, UPDATE_SEX, UPDATE_HEIGHT, UPDATE_WEIGHT, UPDATE_ACTIVITY_LEVEL, UPDATE_DESIRED_DIFFICULTY } from './action_types';
 
 export const updateAge = age => ({
     type: UPDATE_AGE,
@@ -23,4 +23,9 @@ export const updateHeight = height => ({
 export const updateActivityLevel = activityLevel => ({
     type: UPDATE_ACTIVITY_LEVEL,
     activityLevel
+});
+
+export const updateDesiredDifficulty = desiredDifficulty => ({
+    type: UPDATE_DESIRED_DIFFICULTY,
+    desiredDifficulty
 });

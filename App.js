@@ -12,7 +12,7 @@ import store from './redux/store';
 
 // Questionnaire
 import QuestionnaireIntro from './views/questionnaire/QuestionnaireIntro';
-import QuestionnaireActivityLevel from './views/questionnaire/QuestionnaireActivityLevel';
+// import QuestionnaireActivityLevel from './views/questionnaire/QuestionnaireActivityLevel';
 // import QuestionnaireFitnessGoals from './views/questionnaire/QuestionnaireFitnessGoals';
 // import QuestionnaireDesiredActivity from './views/questionnaire/QuestionnaireDesiredActivity';
 
@@ -22,8 +22,8 @@ function Questionnaire() {
   return (
       <QuestionnaireStack.Navigator initialRouteName="Welcome">
         <QuestionnaireStack.Screen name="Intro" component={QuestionnaireIntro} />
-        <QuestionnaireStack.Screen name="ActivityLevel" component={QuestionnaireActivityLevel} />
-        {/* <QuestionnaireStack.Screen name="FitnessGoal" component={QuestionnaireFitnessGoals} />
+        {/* <QuestionnaireStack.Screen name="ActivityLevel" component={QuestionnaireActivityLevel} />
+        <QuestionnaireStack.Screen name="FitnessGoal" component={QuestionnaireFitnessGoals} />
         <QuestionnaireStack.Screen name="DesiredActivty" component={QuestionnaireDesiredActivity} /> */}
       </QuestionnaireStack.Navigator>
   );

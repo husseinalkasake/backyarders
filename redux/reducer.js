@@ -1,4 +1,4 @@
-import { UPDATE_AGE, UPDATE_SEX, UPDATE_HEIGHT, UPDATE_WEIGHT, UPDATE_ACTIVITY_LEVEL } from './action_types';
+import { UPDATE_AGE, UPDATE_SEX, UPDATE_HEIGHT, UPDATE_WEIGHT, UPDATE_ACTIVITY_LEVEL, UPDATE_DESIRED_DIFFICULTY } from './action_types';
 import defaultState from './state';
 
 export default rootReducer = (state = defaultState, action) => {
@@ -27,6 +27,11 @@ export default rootReducer = (state = defaultState, action) => {
         return {
             ...state,
             activityLevel: action.activityLevel
+        }
+    case UPDATE_DESIRED_DIFFICULTY:
+        return {
+            ...state,
+            desiredDifficulty: action.desiredDifficulty
         }
         default:
             return state;

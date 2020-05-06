@@ -81,7 +81,7 @@ export default styles = StyleSheet.create({
     },
     activityLevels: {
       flexDirection: 'row',
-      marginHorizontal: 12
+      marginHorizontal: -16
     },
     activityLevel: {
       marginRight: 12,
@@ -103,5 +103,30 @@ export default styles = StyleSheet.create({
     },
     activityLevelTextSelected: {
       color: 'black'
-    }
+    },
+    icon: {
+      alignSelf: 'center',
+      paddingTop: 6,
+      paddingRight: 12,
+      fontSize: 24
+    },
+    tooltipText: {
+      fontSize: 12,
+      position: 'absolute',
+      bottom: -48,
+      left: 6
+    },
+    desiredDifficulty: {
+      marginRight: 48,
+      backgroundColor: '#4B88B0',
+      height: 80,
+      width: 100,
+      justifyContent: 'center',
+      position: 'relative',
+      borderRadius: 45
+    },
+    desiredDifficulties: {
+      flexDirection: 'row',
+      marginHorizontal: -16
+    },
 });
