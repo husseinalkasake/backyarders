@@ -94,8 +94,32 @@ const Tab = createBottomTabNavigator(); // the main tab navigation object of the
 
 function MainNav() {
   return (
-    <Tab.Navigator initialRouteName="WeekWorkouts">
-      <Tab.Screen name="WeekWorkouts" component={DailyWorkout}/>
+    <Tab.Navigator 
+      initialRouteName="WeekWorkouts"
+      screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'WeekWorkouts') {
+              iconName = focused ? 'ios-fitness' : 'ios-fitness';
+            } else if (route.name === 'WorkoutsList') {
+              iconName = focused ? 'ios-search' : 'ios-search';
+            } else if (route.name === 'NutritionPlate') {
+              iconName = focused ? 'ios-restaurant' : 'ios-restaurant';
+            } else if (route.name === 'PersonalProfile') {
+              iconName = focused ? 'ios-contact' : 'ios-contact';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}
+    >
+      <Tab.Screen name="WeekWorkouts" component={DailyWorkout} />
       <Tab.Screen name="WorkoutsList" component={WorkoutsProfile}/>
       <Tab.Screen name="NutritionPlate" component={Nutrition}/>
       <Tab.Screen name="PersonalProfile" component={PersonalProfile}/>
@@ -104,13 +128,14 @@ function MainNav() {
 }
 
 // TODO read this value from the stored user profile
-const istFirstTimeToUseApp = true;
+// const isFirstTimeToUseApp = false;
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isReady: false,
+      isFirstTimeToUseApp: true, // TODO read this value from the stored user profile and update it from the end of quetionnaire
     };
   }
 
@@ -132,7 +157,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <Container>
           <NavigationContainer>
-          { istFirstTimeToUseApp
+          { this.state.isFirstTimeToUseApp
             ? <Questionnaire />
             : <MainNav />
           }
