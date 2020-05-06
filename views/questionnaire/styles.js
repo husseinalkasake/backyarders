@@ -12,7 +12,7 @@ export default styles = StyleSheet.create({
     },
     field: {
       flexDirection: 'row',
-      paddingTop: 84,
+      paddingTop: 60,
       marginHorizontal: 24
     },
     text: {

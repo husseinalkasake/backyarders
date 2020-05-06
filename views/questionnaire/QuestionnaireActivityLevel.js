@@ -112,7 +112,9 @@ class QuestionnaireActivityLevel extends React.Component {
 
             </View>
 
-            <QuestionnaireNextButton />
+            <QuestionnaireNextButton 
+                goToNextScreen={() => this.props.navigation.navigate("DesiredDifficulty")}
+            />
           </View>
         );
     }

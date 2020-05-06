@@ -12,19 +12,19 @@ import store from './redux/store';
 
 // Questionnaire
 import QuestionnaireIntro from './views/questionnaire/QuestionnaireIntro';
-// import QuestionnaireActivityLevel from './views/questionnaire/QuestionnaireActivityLevel';
+import QuestionnaireActivityLevel from './views/questionnaire/QuestionnaireActivityLevel';
 // import QuestionnaireFitnessGoals from './views/questionnaire/QuestionnaireFitnessGoals';
-// import QuestionnaireDesiredActivity from './views/questionnaire/QuestionnaireDesiredActivity';
+import QuestionnaireDesiredDifficulty from './views/questionnaire/QuestionnaireDesiredDifficulty';
 
 const QuestionnaireStack = createStackNavigator(); // This stack Object is what we use to do all our questionnaire navigation
 
 function Questionnaire() {
   return (
       <QuestionnaireStack.Navigator initialRouteName="Welcome">
-        <QuestionnaireStack.Screen name="Intro" component={QuestionnaireIntro} />
-        {/* <QuestionnaireStack.Screen name="ActivityLevel" component={QuestionnaireActivityLevel} />
-        <QuestionnaireStack.Screen name="FitnessGoal" component={QuestionnaireFitnessGoals} />
-        <QuestionnaireStack.Screen name="DesiredActivty" component={QuestionnaireDesiredActivity} /> */}
+        <QuestionnaireStack.Screen name="Intro" component={QuestionnaireIntro} options={{title: "General Info"}}/>
+        <QuestionnaireStack.Screen name="ActivityLevel" component={QuestionnaireActivityLevel} options={{title: "Current Activity Level"}}/>
+        {/* <QuestionnaireStack.Screen name="FitnessGoal" component={QuestionnaireFitnessGoals} /> */}
+        <QuestionnaireStack.Screen name="DesiredDifficulty" component={QuestionnaireDesiredDifficulty} options={{title: "Desired Difficulty"}}/>
       </QuestionnaireStack.Navigator>
   );
 }

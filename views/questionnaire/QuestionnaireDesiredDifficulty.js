@@ -72,7 +72,9 @@ class QuestionnaireDesiredDifficulty extends React.Component {
 
             </View>
 
-            <QuestionnaireNextButton />
+            <QuestionnaireNextButton 
+                goToNextScreen={() => {}} // TODO make this set firsTime to use the app in App.js to false
+            />
           </View>
         );
     }
