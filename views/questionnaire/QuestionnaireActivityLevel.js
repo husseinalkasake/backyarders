@@ -45,10 +45,6 @@ class QuestionnaireActivityLevel extends React.Component {
         tooltip: activityLevel.UNDEFINED
     }
 
-    numberInput(text) {
-        return text.replace(/\D/g,'');
-    }
-
     toggleTooltip(tooltip) {
         this.setState({tooltip: this.state.tooltip === tooltip ? activityLevel.UNDEFINED : tooltip});
     }

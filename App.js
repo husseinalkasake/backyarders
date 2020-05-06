@@ -3,7 +3,7 @@ import { AppLoading } from 'expo';
 import { Container } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
-import QuestionnaireActivityLevel from './views/questionnaire/QuestionnaireActivityLevel';
+import QuestionnaireDesiredDifficulty from './views/questionnaire/QuestionnaireDesiredDifficulty';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -32,7 +32,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <Container>
-          <QuestionnaireActivityLevel />
+          <QuestionnaireDesiredDifficulty />
         </Container>
       </Provider>
     );
