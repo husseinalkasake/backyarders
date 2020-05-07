@@ -1,6 +1,6 @@
 # **Backyarders**
 
-A mobile application for home workouts with React Native, React Navigation & Redux.
+A mobile application for home workouts with React Native
 
 ## **Setup**
 
@@ -16,10 +16,6 @@ To use Nativebase (UI Library) with Expo, need to install `expo-font` (if not al
 
 `expo install expo-font`
 
-If you have issues with slider, the following might fix it
-
-`react-native link @react-native-community/slider` Then `expo start --clear`
-
 ## **Run**
 
 `npm start` or `expo start`
@@ -27,3 +23,11 @@ If you have issues with slider, the following might fix it
 ## **Test**
 
 TODO after Adding Jest and/or e2e test framework
+
+## **Troubleshooting**
+
+If you have issues with slider, the following might fix it
+
+`react-native link @react-native-community/slider` Then `expo start --clear`
+
+Source: https://github.com/react-native-community/react-native-slider/issues/41
