@@ -14,3 +14,7 @@ web-report/
 .DS_Store
 
 native-base-theme/
+
+# workouts
+*.mov
+*.mp4

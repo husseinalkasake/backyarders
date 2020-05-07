@@ -7,30 +7,54 @@ Accepts a workout object which has:
 It thens renders the info and the video.
 */
 
+import React from "react";
+import { ScrollView, Text, Button, StyleSheet } from "react-native";
 
-import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import WorkoutVideo from "./WorkoutVideo";
+
+import { NOT_APPLICABLE } from "../../resources/workoutTypes";
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
 });
 
-function WorkoutProfile({route, navigation}) {
-    navigation.setOptions({
-        title: "Workout Profile",
-    });
+function WorkoutProfile({ route, navigation }) {
+  const { workout } = route.params; // get the workout object which has the following keys: type, level, name, sourceMain, sourceEdu
 
-    return (
-        <View style={styles.container}>
-            <Text>Workout Profile</Text>
-            <Text>Coming Soon</Text>
-        </View>
-    );
+  navigation.setOptions({
+    title: workout.name,
+  });
+
+  return (
+    <ScrollView style={styles.container}>
+      <Text>
+        <Text>Level: </Text>
+        <Text>{workout.level}</Text>
+      </Text>
+
+      <Text>
+        <Text>Type: </Text>
+        <Text>{workout.type}</Text>
+      </Text>
+
+      {/* TODO cut these muscles up and display them as an array (string manipulation) */}
+      <Text>
+        <Text>Muscles under tension: </Text>
+        <Text>{workout.muscles}</Text>
+      </Text>
+
+      <WorkoutVideo
+        source={
+          workout.sourceEdu == NOT_APPLICABLE
+            ? workout.sourceMain
+            : workout.sourceEdu
+        }
+      />
+    </ScrollView>
+  );
 }
 
 export default WorkoutProfile;
