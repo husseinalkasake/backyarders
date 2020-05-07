@@ -82,7 +82,7 @@ class QuestionnaireDesiredDifficulty extends React.Component {
 
         <QuestionnaireNextButton
           text="Finish"
-          goToNextScreen={() => this.props.updateAppFirstTimeUsage()} // TODO make this set firsTime to use the app in App.js to false
+          goToNextScreen={() => this.props.updateAppFirstTimeUsage()}
         />
       </View>
     );
