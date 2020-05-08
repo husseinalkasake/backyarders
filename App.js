@@ -4,7 +4,8 @@ import { Container } from "native-base";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import getStore from "./redux/store";
 
 import NavContainer from "./navigation/NavContainer";
 
@@ -30,11 +31,16 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
 
+    // persisted state stuff
+    const { store, persistor } = getStore();
+
     return (
       <Provider store={store}>
-        <Container>
-          <NavContainer />
-        </Container>
+        <PersistGate loading={null} persistor={persistor}>
+          <Container>
+            <NavContainer />
+          </Container>
+        </PersistGate>
       </Provider>
     );
   }
