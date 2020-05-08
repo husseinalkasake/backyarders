@@ -25,6 +25,18 @@ const styles = StyleSheet.create({
   row: {
     padding: 20,
   },
+  beginner: {
+    backgroundColor: "rgba(0, 255, 0, 0.5)",
+  },
+  intermediate: {
+    backgroundColor: "#fff",
+  },
+  pro: {
+    backgroundColor: "rgba(0, 0, 255, 0.5)",
+  },
+  challenge: {
+    backgroundColor: "rgba(255, 0, 0, 0.5)",
+  },
 });
 
 const sortNextBy = {
