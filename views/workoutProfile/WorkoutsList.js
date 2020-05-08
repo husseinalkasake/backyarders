@@ -15,6 +15,8 @@ import {
 
 import { workouts } from "../../resources/workoutTypes";
 
+import { workoutLevels } from "../../resources/workoutTypes";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -25,26 +27,36 @@ const styles = StyleSheet.create({
   row: {
     padding: 20,
   },
-  beginner: {
-    backgroundColor: "rgba(0, 255, 0, 0.5)",
-  },
-  intermediate: {
-    backgroundColor: "#fff",
-  },
-  pro: {
-    backgroundColor: "rgba(0, 0, 255, 0.5)",
-  },
-  challenge: {
-    backgroundColor: "rgba(255, 0, 0, 0.5)",
-  },
 });
 
+// used to sort differently every on every press
 const sortNextBy = {
   alphabetical: "type",
   type: "level",
   level: "alphabetical",
 };
 
+// TODO cahnge this to colors we actually like
+function getBackgroundColor(level) {
+  let backgroundColor;
+  switch (level) {
+    case workoutLevels[0]:
+      backgroundColor = "#fff";
+      break;
+    case workoutLevels[1]:
+      backgroundColor = "rgba(0, 255, 0, 0.3)";
+      break;
+    case workoutLevels[2]:
+      backgroundColor = "rgba(0, 0, 255, 0.3)";
+      break;
+    case workoutLevels[3]:
+      backgroundColor = "rgba(255, 0, 0, 0.3)";
+      break;
+  }
+  return { backgroundColor };
+}
+
+// renderes the headers of each section in the section list
 const renderSectionHeader = ({ section }) => <Text>{section.title}</Text>;
 
 function WorkoutsList({ route, navigation }) {
@@ -119,10 +131,10 @@ function WorkoutsList({ route, navigation }) {
       sections={sections}
       renderItem={({ item }) => (
         <TouchableOpacity
-          style={styles.row}
+          style={[styles.row, getBackgroundColor(item.level)]}
           onPress={() =>
             navigation.navigate("WorkoutProfile", { workout: item })
-          } //
+          }
         >
           <Text>{item.name}</Text>
         </TouchableOpacity>

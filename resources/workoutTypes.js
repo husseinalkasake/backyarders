@@ -1,4 +1,4 @@
-const workoutLevels = {
+export const workoutLevels = {
   0: "Beginner",
   1: "Intermediate",
   2: "Pro",
