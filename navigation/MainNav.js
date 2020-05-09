@@ -13,16 +13,16 @@ export default function MainNav() {
 
   return (
     <Tab.Navigator
-      initialRouteName={routes.DAILY_WORKOUT_ROUTE}
+      initialRouteName={routes.DAILY_WORKOUTS_ROUTE}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
           switch (route.name) {
-            case routes.DAILY_WORKOUT_ROUTE:
+            case routes.DAILY_WORKOUTS_ROUTE:
               iconName = focused ? "ios-fitness" : "ios-fitness";
               break;
-            case routes.WORKOUTS_PROFILE_ROUTE:
+            case routes.WORKOUTS_LIST_ROUTE:
               iconName = focused ? "ios-search" : "ios-search";
               break;
             case routes.NUTRITION_ROUTE:
@@ -43,9 +43,9 @@ export default function MainNav() {
         showLabel: false,
       }}
     >
-      <Tab.Screen name={routes.DAILY_WORKOUT_ROUTE} component={DailyWorkout} />
+      <Tab.Screen name={routes.DAILY_WORKOUTS_ROUTE} component={DailyWorkout} />
       <Tab.Screen
-        name={routes.WORKOUTS_PROFILE_ROUTE}
+        name={routes.WORKOUTS_LIST_ROUTE}
         component={WorkoutsProfile}
       />
       <Tab.Screen name={routes.NUTRITION_ROUTE} component={Nutrition} />
