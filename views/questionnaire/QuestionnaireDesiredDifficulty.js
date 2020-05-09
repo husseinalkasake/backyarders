@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Slider } from "react-native";
 import { Text } from "native-base";
 import { connect } from "react-redux";
 import {
@@ -9,7 +9,6 @@ import {
 import styles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
-import { Slider } from "react-native";
 import desiredDifficulty from "../../resources/desiredDifficulty";
 
 class QuestionnaireDesiredDifficultyOption extends React.Component {
