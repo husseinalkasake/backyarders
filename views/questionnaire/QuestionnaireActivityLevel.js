@@ -1,11 +1,12 @@
 import React from "react";
-import { View, TouchableOpacity, Slider } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Text, Icon } from "native-base";
 import { connect } from "react-redux";
 import { updateActivityLevel } from "../../redux/actions";
 import styles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
+import { Slider } from "react-native";
 import activityLevel from "../../resources/activityLevel";
 
 class QuestionnaireActivityLevelOption extends React.Component {

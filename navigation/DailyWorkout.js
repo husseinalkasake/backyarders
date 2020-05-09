@@ -1,8 +1,8 @@
 import React from "react";
+import { DAILY_WORKOUTS_ROUTE, DAILY_WORKOUT_ROUTE } from "./routes";
 import { createStackNavigator } from "@react-navigation/stack";
 import WeekWorkouts from "../views/dailyWorkout/WeekWorkouts";
 import TodaysWorkout from "../views/dailyWorkout/TodaysWorkout";
-import { DAILY_WORKOUTS_ROUTE, DAILY_WORKOUT_ROUTE } from "./routes";
 
 export default function DailyWorkout() {
   const DailyWorkoutStack = createStackNavigator();

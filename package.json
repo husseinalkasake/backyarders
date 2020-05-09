@@ -16,7 +16,6 @@
     "@react-navigation/stack": "^5.2.19",
     "expo": "^37.0.8",
     "expo-font": "~8.1.0",
-    "husky": "^4.2.5",
     "native-base": "^2.13.12",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
@@ -33,15 +32,8 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0",
-    "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1"
+    "@babel/core": "^7.8.6"
   },
-  "private": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  }
+  "private": true
 }
