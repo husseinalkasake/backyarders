@@ -7,30 +7,29 @@ Accepts a workout object which has:
 It thens renders the info and the video.
 */
 
-
-import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+		alignItems: "center",
+		justifyContent: "center",
+	},
 });
 
-function WorkoutProfile({route, navigation}) {
-    navigation.setOptions({
-        title: "Workout Profile",
-    });
+function WorkoutProfile({ navigation }) {
+	navigation.setOptions({
+		title: "Workout Profile",
+	});
 
-    return (
-        <View style={styles.container}>
-            <Text>Workout Profile</Text>
-            <Text>Coming Soon</Text>
-        </View>
-    );
+	return (
+		<View style={styles.container}>
+			<Text>Workout Profile</Text>
+			<Text>Coming Soon</Text>
+		</View>
+	);
 }
 
 export default WorkoutProfile;
