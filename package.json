@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.10.0",
     "@react-native-community/masked-view": "0.1.6",
     "@react-native-community/slider": "^2.0.9",
     "@react-navigation/bottom-tabs": "^5.3.4",
@@ -27,7 +28,8 @@
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.3.9",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.1.0",

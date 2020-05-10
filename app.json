@@ -2,11 +2,7 @@
   "expo": {
     "name": "backyarders",
     "slug": "backyarders",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,11 +14,14 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.backyarders.backyarders",
+      "buildNumber": "0.0.1"
+    },
+    "android": {
+      "package": "com.backyarders.backyarders",
+      "versionCode": 1
     }
   }
 }
