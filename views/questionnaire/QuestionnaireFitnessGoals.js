@@ -9,72 +9,81 @@ import QuestionnaireNextButton from "./QuestionnaireNextButton";
 import DraggableFlatList from "react-native-draggable-flatlist";
 
 class QuestionnaireFitnessGoals extends React.Component {
-  // convert fitness goals to draggable list format
-  getDraggableListData() {
-    return this.props.fitnessGoals.map((textValue, index) => ({
-      key: `fitness-goal-${index}`,
-      label: textValue,
-      backgroundColor: "#4B88B0", //TODO: GET THIS FROM STYLES FILE (AFTER STYLE REFACTORING)
-    }));
-  }
+	// convert fitness goals to draggable list format
+	getDraggableListData() {
+		return this.props.fitnessGoals.map((textValue, index) => ({
+			key: `fitness-goal-${index}`,
+			label: textValue,
+			backgroundColor: "#4B88B0", //TODO: GET THIS FROM STYLES FILE (AFTER STYLE REFACTORING)
+		}));
+	}
 
-  // item to render for each entry in list
-  draggableListItem = ({ item, index, drag, isActive }) => {
-    return (
-      <TouchableOpacity
-        style={{
-          ...styles.dragListItem,
-          backgroundColor: isActive ? "#4B88B0" : item.backgroundColor,
-        }}
-        onPressIn={drag}
-      >
-        <Text style={styles.dragListItemText}>{item.label}</Text>
-      </TouchableOpacity>
-    );
-  };
+	// item to render for each entry in list
+	draggableListItem = ({ item, index, drag, isActive }) => {
+		return (
+			<TouchableOpacity
+				style={{
+					...styles.dragListItem,
+					backgroundColor: isActive
+						? "#4B88B0"
+						: item.backgroundColor,
+				}}
+				onPressIn={drag}>
+				<Text style={styles.dragListItemText}>{item.label}</Text>
+			</TouchableOpacity>
+		);
+	};
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={[styles.innerContainer, styles.fitnessGoalsContainer]}>
-          <QuestionnaireTitle />
+	render() {
+		return (
+			<View style={styles.container}>
+				<View
+					style={[
+						styles.innerContainer,
+						styles.fitnessGoalsContainer,
+					]}>
+					<QuestionnaireTitle />
 
-          <View>
-            <Text style={styles.subtitle}>Rank your fitness goals</Text>
-          </View>
+					<View>
+						<Text style={styles.subtitle}>
+							Rank your fitness goals
+						</Text>
+					</View>
 
-          <View style={styles.dragList}>
-            <DraggableFlatList
-              data={this.getDraggableListData()}
-              renderItem={this.draggableListItem}
-              keyExtractor={(item, index) =>
-                `draggable-item-${item.key}-${index}`
-              }
-              onDragEnd={({ data }) => this.props.updateFitnessGoals({ data })}
-            />
-          </View>
-        </View>
+					<View style={styles.dragList}>
+						<DraggableFlatList
+							data={this.getDraggableListData()}
+							renderItem={this.draggableListItem}
+							keyExtractor={(item, index) =>
+								`draggable-item-${item.key}-${index}`
+							}
+							onDragEnd={({ data }) =>
+								this.props.updateFitnessGoals({ data })
+							}
+						/>
+					</View>
+				</View>
 
-        <QuestionnaireNextButton
-          goToNextScreen={() =>
-            this.props.navigation.navigate("DesiredDifficulty")
-          }
-        />
-      </View>
-    );
-  }
+				<QuestionnaireNextButton
+					goToNextScreen={() =>
+						this.props.navigation.navigate("DesiredDifficulty")
+					}
+				/>
+			</View>
+		);
+	}
 }
 
 const mapStateToProps = (state) => ({
-  fitnessGoals: state.fitnessGoals,
+	fitnessGoals: state.fitnessGoals,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateFitnessGoals: (fitnessGoals) =>
-    dispatch(updateFitnessGoals(fitnessGoals)),
+	updateFitnessGoals: (fitnessGoals) =>
+		dispatch(updateFitnessGoals(fitnessGoals)),
 });
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(QuestionnaireFitnessGoals);

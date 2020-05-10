@@ -9,50 +9,56 @@ import PersonalProfile from "./PersonalProfile";
 import routes from "./routes";
 
 export default function MainNav() {
-  const Tab = createBottomTabNavigator();
+	const Tab = createBottomTabNavigator();
 
-  return (
-    <Tab.Navigator
-      initialRouteName={routes.DAILY_WORKOUTS_ROUTE}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+	return (
+		<Tab.Navigator
+			initialRouteName={routes.DAILY_WORKOUTS_ROUTE}
+			screenOptions={({ route }) => ({
+				tabBarIcon: ({ focused, color, size }) => {
+					let iconName;
 
-          switch (route.name) {
-            case routes.DAILY_WORKOUTS_ROUTE:
-              iconName = focused ? "ios-fitness" : "ios-fitness";
-              break;
-            case routes.WORKOUTS_LIST_ROUTE:
-              iconName = focused ? "ios-search" : "ios-search";
-              break;
-            case routes.NUTRITION_ROUTE:
-              iconName = focused ? "ios-restaurant" : "ios-restaurant";
-              break;
-            case routes.PERSONAL_PROFILE_ROUTE:
-              iconName = focused ? "ios-contact" : "ios-contact";
-              break;
-          }
+					switch (route.name) {
+						case routes.DAILY_WORKOUTS_ROUTE:
+							iconName = focused ? "ios-fitness" : "ios-fitness";
+							break;
+						case routes.WORKOUTS_LIST_ROUTE:
+							iconName = focused ? "ios-search" : "ios-search";
+							break;
+						case routes.NUTRITION_ROUTE:
+							iconName = focused
+								? "ios-restaurant"
+								: "ios-restaurant";
+							break;
+						case routes.PERSONAL_PROFILE_ROUTE:
+							iconName = focused ? "ios-contact" : "ios-contact";
+							break;
+					}
 
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray",
-        showLabel: false,
-      }}
-    >
-      <Tab.Screen name={routes.DAILY_WORKOUTS_ROUTE} component={DailyWorkout} />
-      <Tab.Screen
-        name={routes.WORKOUTS_LIST_ROUTE}
-        component={WorkoutsProfile}
-      />
-      <Tab.Screen name={routes.NUTRITION_ROUTE} component={Nutrition} />
-      <Tab.Screen
-        name={routes.PERSONAL_PROFILE_ROUTE}
-        component={PersonalProfile}
-      />
-    </Tab.Navigator>
-  );
+					// You can return any component that you like here!
+					return (
+						<Ionicons name={iconName} size={size} color={color} />
+					);
+				},
+			})}
+			tabBarOptions={{
+				activeTintColor: "tomato",
+				inactiveTintColor: "gray",
+				showLabel: false,
+			}}>
+			<Tab.Screen
+				name={routes.DAILY_WORKOUTS_ROUTE}
+				component={DailyWorkout}
+			/>
+			<Tab.Screen
+				name={routes.WORKOUTS_LIST_ROUTE}
+				component={WorkoutsProfile}
+			/>
+			<Tab.Screen name={routes.NUTRITION_ROUTE} component={Nutrition} />
+			<Tab.Screen
+				name={routes.PERSONAL_PROFILE_ROUTE}
+				component={PersonalProfile}
+			/>
+		</Tab.Navigator>
+	);
 }
