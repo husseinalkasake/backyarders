@@ -22,7 +22,7 @@ export const PERSONAL_PROFILE_EDIT_ROUTE = "EditPersonalProfile";
 export const WORKOUTS_LIST_ROUTE = "WorkoutsList";
 export const WORKOUT_PROFILE_ROUTE = "WorkoutProfile";
 
-export default routes = {
+const routes = {
 	QUESTIONNAIRE_ROUTE,
 	QUESTIONNAIRE_WELCOME_ROUTE,
 	QUESTIONNAIRE_INTRO_ROUTE,
@@ -42,3 +42,5 @@ export default routes = {
 	WORKOUTS_LIST_ROUTE,
 	WORKOUT_PROFILE_ROUTE,
 };
+
+export default routes;

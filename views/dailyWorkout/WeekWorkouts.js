@@ -5,7 +5,9 @@ It has a start button at the bottom to start today's workout.
 */
 
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import {
+ View, Text, Button, StyleSheet,
+} from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -16,7 +18,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-function WeekWorkouts({ route, navigation }) {
+function WeekWorkouts({ navigation }) {
 	navigation.setOptions({
 		title: "This Week's Workouts",
 	});

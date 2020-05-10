@@ -33,6 +33,8 @@ export default function MainNav() {
 						case routes.PERSONAL_PROFILE_ROUTE:
 							iconName = focused ? "ios-contact" : "ios-contact";
 							break;
+						default:
+							break;
 					}
 
 					// You can return any component that you like here!
@@ -45,7 +47,8 @@ export default function MainNav() {
 				activeTintColor: "tomato",
 				inactiveTintColor: "gray",
 				showLabel: false,
-			}}>
+			}}
+		>
 			<Tab.Screen
 				name={routes.DAILY_WORKOUTS_ROUTE}
 				component={DailyWorkout}

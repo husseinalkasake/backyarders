@@ -16,7 +16,8 @@ export default function Questionnaire() {
 	const QuestionnaireStack = createStackNavigator();
 	return (
 		<QuestionnaireStack.Navigator
-			initialRouteName={QUESTIONNAIRE_WELCOME_ROUTE}>
+			initialRouteName={QUESTIONNAIRE_WELCOME_ROUTE}
+		>
 			<QuestionnaireStack.Screen
 				name={QUESTIONNAIRE_INTRO_ROUTE}
 				component={QuestionnaireIntro}

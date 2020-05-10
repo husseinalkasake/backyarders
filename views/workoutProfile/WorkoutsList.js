@@ -13,7 +13,7 @@ import {
 	StyleSheet,
 } from "react-native";
 
-import { workouts } from "../../resources/workoutTypes";
+import workouts from "../../resources/workoutTypes";
 
 const styles = StyleSheet.create({
 	container: {
@@ -53,7 +53,7 @@ function WorkoutsList({ route, navigation }) {
 		),
 	});
 
-	if (sortBy == "alphabetical") {
+	if (sortBy === "alphabetical") {
 		const workoutsByLetter = workouts.reduce((obj, workout) => {
 			const firstLetter = workout.name[0].toUpperCase();
 
@@ -69,9 +69,9 @@ function WorkoutsList({ route, navigation }) {
 				data: workoutsByLetter[letter],
 				title: letter,
 			}));
-	} else if (sortBy == "type") {
+	} else if (sortBy === "type") {
 		const workoutsByType = workouts.reduce((obj, workout) => {
-			const type = workout.type;
+			const { type } = workout;
 
 			return {
 				...obj,
@@ -85,9 +85,9 @@ function WorkoutsList({ route, navigation }) {
 				data: workoutsByType[type],
 				title: type,
 			}));
-	} else if (sortBy == "level") {
+	} else if (sortBy === "level") {
 		const workoutsByLevel = workouts.reduce((obj, workout) => {
-			const level = workout.level;
+			const { level } = workout;
 
 			return {
 				...obj,

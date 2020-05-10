@@ -13,7 +13,9 @@ const types = {
 	hiit: "H.I.I.T.",
 };
 
-export const workouts = [
+const workouts = [
 	{ level: levels[0], type: types.legs, name: "Basic Squat" },
 	{ level: levels[3], type: types.push, name: "Clap Push-up" },
 ];
+
+export default workouts;

@@ -8,7 +8,7 @@ Then you get to choose the different options for this plate section.
 */
 
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-function PlateSection({ route, navigation }) {
+function PlateSection({ navigation }) {
 	navigation.setOptions({
 		title: "Plate Section",
 	});

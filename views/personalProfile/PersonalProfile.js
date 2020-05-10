@@ -3,7 +3,9 @@ This page shows the personal profile of a user.
 */
 
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import {
+ View, Text, Button, StyleSheet,
+} from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -14,7 +16,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-function PersonalProfile({ route, navigation }) {
+function PersonalProfile({ navigation }) {
 	navigation.setOptions({
 		title: "Personal Profile",
 		headerRight: () => (

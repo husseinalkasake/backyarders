@@ -10,7 +10,7 @@ import {
 } from "./action_types";
 import defaultState from "./state";
 
-export default rootReducer = (state = defaultState, action) => {
+const rootReducer = (state = defaultState, action) => {
 	switch (action.type) {
 		case UPDATE_AGE:
 			return {
@@ -46,7 +46,7 @@ export default rootReducer = (state = defaultState, action) => {
 			return {
 				...state,
 				fitnessGoals: action.fitnessGoals.data.map(
-					(goal) => goal.label
+					(goal) => goal.label,
 				),
 			};
 		case UPDATE_APP_FIRST_TIME_USAGE:
@@ -58,3 +58,5 @@ export default rootReducer = (state = defaultState, action) => {
 			return state;
 	}
 };
+
+export default rootReducer;

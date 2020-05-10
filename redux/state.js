@@ -3,7 +3,7 @@ import activityLevel from "../resources/activityLevel";
 import desiredDifficulty from "../resources/desiredDifficulty";
 import fitnessGoals from "../resources/fitnessGoals";
 
-export default defaultState = {
+const defaultState = {
 	age: "",
 	sex: sex.UNDEFINED,
 	weight: "",
@@ -13,3 +13,5 @@ export default defaultState = {
 	fitnessGoals,
 	isFirstTimeToUseApp: true,
 };
+
+export default defaultState;

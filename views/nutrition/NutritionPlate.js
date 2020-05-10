@@ -1,10 +1,12 @@
 /*
 This is the landing page of nutrition.
-It shows the stuff on the plate, and lets us select each compoenet to go into more details in PlateSection.
+It shows stuff on the plate, and lets you select each component to go into more details.
 */
 
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import {
+ View, Text, Button, StyleSheet,
+} from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -15,7 +17,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-function NutritionPlate({ route, navigation }) {
+function NutritionPlate({ navigation }) {
 	navigation.setOptions({
 		title: "Nutrition Plate",
 	});

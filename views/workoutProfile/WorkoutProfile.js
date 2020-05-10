@@ -8,7 +8,7 @@ It thens renders the info and the video.
 */
 
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-function WorkoutProfile({ route, navigation }) {
+function WorkoutProfile({ navigation }) {
 	navigation.setOptions({
 		title: "Workout Profile",
 	});

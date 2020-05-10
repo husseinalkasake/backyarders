@@ -3,7 +3,7 @@ You access this page from the PersonalProfile screen.
 */
 
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	container: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-function EditPersonalProfile({ route, navigation }) {
+function EditPersonalProfile({ navigation }) {
 	navigation.setOptions({
 		title: "Edit Personal Profile",
 	});

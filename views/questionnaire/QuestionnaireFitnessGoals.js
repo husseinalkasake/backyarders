@@ -2,11 +2,11 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text } from "native-base";
 import { connect } from "react-redux";
+import DraggableFlatList from "react-native-draggable-flatlist";
 import { updateFitnessGoals } from "../../redux/actions";
 import styles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
-import DraggableFlatList from "react-native-draggable-flatlist";
 
 class QuestionnaireFitnessGoals extends React.Component {
 	// convert fitness goals to draggable list format
@@ -14,25 +14,22 @@ class QuestionnaireFitnessGoals extends React.Component {
 		return this.props.fitnessGoals.map((textValue, index) => ({
 			key: `fitness-goal-${index}`,
 			label: textValue,
-			backgroundColor: "#4B88B0", //TODO: GET THIS FROM STYLES FILE (AFTER STYLE REFACTORING)
+			backgroundColor: "#4B88B0", // TODO: GET THIS FROM STYLES FILE (AFTER STYLE REFACTORING)
 		}));
 	}
 
 	// item to render for each entry in list
-	draggableListItem = ({ item, index, drag, isActive }) => {
-		return (
-			<TouchableOpacity
-				style={{
-					...styles.dragListItem,
-					backgroundColor: isActive
-						? "#4B88B0"
-						: item.backgroundColor,
-				}}
-				onPressIn={drag}>
-				<Text style={styles.dragListItemText}>{item.label}</Text>
-			</TouchableOpacity>
-		);
-	};
+	draggableListItem = ({ item, drag, isActive }) => (
+		<TouchableOpacity
+			style={{
+				...styles.dragListItem,
+				backgroundColor: isActive ? "#4B88B0" : item.backgroundColor,
+			}}
+			onPressIn={drag}
+		>
+			<Text style={styles.dragListItemText}>{item.label}</Text>
+		</TouchableOpacity>
+	);
 
 	render() {
 		return (
@@ -41,7 +38,8 @@ class QuestionnaireFitnessGoals extends React.Component {
 					style={[
 						styles.innerContainer,
 						styles.fitnessGoalsContainer,
-					]}>
+					]}
+				>
 					<QuestionnaireTitle />
 
 					<View>
@@ -85,5 +83,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
 )(QuestionnaireFitnessGoals);

@@ -1,65 +1,30 @@
 import React from "react";
-import { View, TouchableOpacity } from "react-native";
-import { Text, Icon } from "native-base";
+import { View, Slider } from "react-native";
+import { Text } from "native-base";
 import { connect } from "react-redux";
 import { updateActivityLevel } from "../../redux/actions";
 import styles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
-import { Slider } from "react-native";
+import QuestionnaireActivityLevelOption from "./components/QuestionnaireActivityLevelOption";
+
 import activityLevel from "../../resources/activityLevel";
 
-class QuestionnaireActivityLevelOption extends React.Component {
-	getTooltipText() {
-		const exerciseAmounts = ["0", "1-3", "3-4", "5-6"];
-		return `I exercise ${
-			exerciseAmounts[this.props.option]
-		} times per week`;
-	}
-
-	render() {
-		const { option, text, currentOption, tooltip, onTooltip } = this.props;
-		return (
-			<View>
-				<View style={styles.activityLevel}>
-					<Text
-						style={[
-							styles.activityLevelText,
-							currentOption === option &&
-								styles.activityLevelTextSelected,
-						]}>
-						{text}
-					</Text>
-				</View>
-				<TouchableOpacity onPress={onTooltip}>
-					<Icon
-						style={styles.icon}
-						type="AntDesign"
-						name="questioncircle"
-					/>
-				</TouchableOpacity>
-				{tooltip === option && (
-					<Text style={styles.tooltipText}>
-						{this.getTooltipText()}
-					</Text>
-				)}
-			</View>
-		);
-	}
-}
-
 class QuestionnaireActivityLevel extends React.Component {
-	state = {
-		tooltip: activityLevel.UNDEFINED,
-	};
+	constructor() {
+		super();
+		this.state = {
+			tooltip: activityLevel.UNDEFINED,
+		};
+	}
 
 	toggleTooltip(tooltip) {
-		this.setState({
+		this.setState((prevState) => ({
 			tooltip:
-				this.state.tooltip === tooltip
+				prevState.tooltip === tooltip
 					? activityLevel.UNDEFINED
 					: tooltip,
-		});
+		}));
 	}
 
 	updateActivityLevel(newActivityLevel) {
@@ -157,5 +122,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
 )(QuestionnaireActivityLevel);

@@ -9,7 +9,8 @@ export default function PersonalProfile() {
 
 	return (
 		<PersonalProfileStack.Navigator
-			initialRouteName={PERSONAL_PROFILE_ROUTE}>
+			initialRouteName={PERSONAL_PROFILE_ROUTE}
+		>
 			<PersonalProfileStack.Screen
 				name={PERSONAL_PROFILE_ROUTE}
 				component={PersonalProfileScreen}
