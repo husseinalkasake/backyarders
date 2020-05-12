@@ -1,27 +1,27 @@
 {
-  "expo": {
-    "name": "backyarders",
-    "slug": "backyarders",
-    "platforms": ["ios", "android", "web"],
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "bundleIdentifier": "com.backyarders.backyarders",
-      "buildNumber": "0.0.1"
-    },
-    "android": {
-      "package": "com.backyarders.backyarders",
-      "versionCode": 1
-    }
-  }
+	"expo": {
+		"name": "backyarders",
+		"slug": "backyarders",
+		"platforms": ["ios", "android", "web"],
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"bundleIdentifier": "com.backyarders.backyarders",
+			"buildNumber": "0.0.1"
+		},
+		"android": {
+			"package": "com.backyarders.backyarders",
+			"versionCode": 1
+		}
+	}
 }
