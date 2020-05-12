@@ -16,7 +16,6 @@ export const NUTRITION_PLATE_ROUTE = "PlateSection";
 
 // Personal Profile Routes
 export const PERSONAL_PROFILE_ROUTE = "PersonalProfile";
-export const PERSONAL_PROFILE_EDIT_ROUTE = "EditPersonalProfile";
 
 // Workout Routes
 export const WORKOUTS_LIST_ROUTE = "WorkoutsList";
@@ -37,7 +36,6 @@ const routes = {
 	NUTRITION_PLATE_ROUTE,
 
 	PERSONAL_PROFILE_ROUTE,
-	PERSONAL_PROFILE_EDIT_ROUTE,
 
 	WORKOUTS_LIST_ROUTE,
 	WORKOUT_PROFILE_ROUTE,
