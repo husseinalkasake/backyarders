@@ -46,6 +46,10 @@ class PersonalProfile extends React.Component {
 		this.keyboardDidHideListener.remove();
 	}
 
+	numberInput(text) {
+		return text.replace(/\D/g, "");
+	}
+
 	getDraggableListData() {
 		return this.props.fitnessGoals.map((textValue, index) => ({
 			key: `fitness-goal-${index}`,
