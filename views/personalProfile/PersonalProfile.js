@@ -30,7 +30,7 @@ class PersonalProfile extends React.Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.keyboardDidShowListener = Keyboard.addListener(
 			"keyboardDidShow",
 			() => this.setState({ keyboardShowing: true })
