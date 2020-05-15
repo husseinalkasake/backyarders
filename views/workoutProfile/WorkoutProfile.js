@@ -15,46 +15,46 @@ import WorkoutVideo from "./WorkoutVideo";
 import { NOT_APPLICABLE } from "../../resources/workoutTypes";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+	},
 });
 
 function WorkoutProfile({ route, navigation }) {
-  const { workout } = route.params; // get the workout object which has the following keys: type, level, name, sourceMain, sourceEdu
+	const { workout } = route.params; // get the workout object which has the following keys: type, level, name, sourceMain, sourceEdu
 
-  navigation.setOptions({
-    title: workout.name,
-  });
+	navigation.setOptions({
+		title: workout.name,
+	});
 
-  return (
-    <ScrollView style={styles.container}>
-      <Text>
-        <Text>Level: </Text>
-        <Text>{workout.level}</Text>
-      </Text>
+	return (
+		<ScrollView style={styles.container}>
+			<Text>
+				<Text>Level: </Text>
+				<Text>{workout.level}</Text>
+			</Text>
 
-      <Text>
-        <Text>Type: </Text>
-        <Text>{workout.type}</Text>
-      </Text>
+			<Text>
+				<Text>Type: </Text>
+				<Text>{workout.type}</Text>
+			</Text>
 
-      {/* TODO cut these muscles up and display them as an array (string manipulation) */}
-      <Text>
-        <Text>Muscles under tension: </Text>
-        <Text>{workout.muscles}</Text>
-      </Text>
+			{/* TODO cut these muscles up and display them as an array (string manipulation) */}
+			<Text>
+				<Text>Muscles under tension: </Text>
+				<Text>{workout.muscles}</Text>
+			</Text>
 
-      <WorkoutVideo
-        source={
-          workout.sourceEdu == NOT_APPLICABLE
-            ? workout.sourceMain
-            : workout.sourceEdu
-        }
-      />
-    </ScrollView>
-  );
+			<WorkoutVideo
+				source={
+					workout.sourceEdu == NOT_APPLICABLE
+						? { uri: `https://gdurl.com${workout.sourceMain}` }
+						: { uri: `https://gdurl.com${workout.sourceEdu}` }
+				}
+			/>
+		</ScrollView>
+	);
 }
 
 export default WorkoutProfile;
