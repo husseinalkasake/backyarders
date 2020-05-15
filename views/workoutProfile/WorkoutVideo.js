@@ -5,13 +5,15 @@ This compoenent accepts a video source and renders the workout video.
 import React from "react";
 import { TouchableHighlight, View, Dimensions } from "react-native";
 import { Video } from "expo-av";
-//import { Asset } from "expo-asset";
 
 class WorkoutVideo extends React.Component {
-	state = {
-		isReady: false,
-		isPlaying: true,
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			isReady: false,
+			isPlaying: true,
+		};
+	}
 
 	// loadAssetsAsync = async () => {
 	//   await Asset.loadAsync([
@@ -19,14 +21,15 @@ class WorkoutVideo extends React.Component {
 	//   ]);
 	// };
 
-	setupAsync = async () => {
-		// await Promise.all([this.loadAssetsAsync()]);
-		this.setState({ isReady: true });
-	};
-
 	componentDidMount() {
 		this.setupAsync();
 	}
+
+	setupAsync = async () => {
+		// TODO load the video first
+		// TODO dsiplay "Lading" while video is still loading
+		this.setState({ isReady: true });
+	};
 
 	resetAsync = async () => {
 		await this.video.stopAsync();
@@ -45,12 +48,7 @@ class WorkoutVideo extends React.Component {
 
 	render() {
 		return (
-			<View
-				style={
-					{
-						//margin: 10,
-					}
-				}>
+			<View>
 				<TouchableHighlight
 					onPress={() => {
 						this.playPauseAsync();
@@ -61,13 +59,13 @@ class WorkoutVideo extends React.Component {
 							style={{
 								width:
 									this.props.width ||
-									Dimensions.get("window").width, //360 / 1.2, // we might wanna divide it by a factor
+									Dimensions.get("window").width, // 360 / 1.2, // we might wanna divide it by a factor
 								height:
 									this.props.height ||
-									Dimensions.get("window").width * 2, //640 / 1.2, // we might wanna divide it by a factor
+									Dimensions.get("window").width * 2, // 640 / 1.2, // we might wanna divide it by a factor
 							}}
 							resizeMode="cover"
-							shouldPlay={true}
+							shouldPlay
 							ref={(c) => {
 								this.video = c;
 							}}
