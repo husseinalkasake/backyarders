@@ -58,10 +58,8 @@ const styles = StyleSheet.create({
 		borderRadius: 45,
 	},
 	dragList: {
-		position: "absolute",
 		width: "90%",
 		left: "5%",
-		bottom: "22%", // HACK DUE TO DRAGLIST ACTING WEIRD
 	},
 	dragListItem: {
 		height: 50,
@@ -77,10 +75,6 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		right: 12,
 		backgroundColor: "#4B88B0",
-	},
-	desiredDifficultyContainer: {
-		position: "absolute",
-		bottom: 36,
 	},
 });
 

@@ -3,7 +3,7 @@ This page shows the personal profile of a user.
 */
 
 import React from "react";
-import { View, TouchableOpacity, Keyboard } from "react-native";
+import { View, TouchableOpacity, Keyboard, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import {
@@ -108,7 +108,7 @@ class PersonalProfile extends React.Component {
 		} = this.props;
 
 		return (
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<View style={styles.field}>
 					<Text style={styles.text}>Age</Text>
 					<Item regular style={styles.input}>
@@ -231,7 +231,7 @@ class PersonalProfile extends React.Component {
 						/>
 					</View>
 				)}
-				<View style={[styles.field, styles.desiredDifficultyContainer]}>
+				<View style={[styles.field]}>
 					<Text style={styles.text}>Desired Difficulty</Text>
 					<Picker
 						note
@@ -246,7 +246,7 @@ class PersonalProfile extends React.Component {
 						{this.getPickerItems(desiredDifficulty)}
 					</Picker>
 				</View>
-			</View>
+			</ScrollView>
 		);
 	}
 }
