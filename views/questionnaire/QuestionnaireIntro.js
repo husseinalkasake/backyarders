@@ -5,9 +5,7 @@ import {
 	TouchableWithoutFeedback,
 	Keyboard,
 } from "react-native";
-import {
- Input, Item, Button, Text,
-} from "native-base";
+import { Input, Item, Button, Text } from "native-base";
 import { connect } from "react-redux";
 import {
 	updateAge,
@@ -21,21 +19,18 @@ import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
 
 class QuestionnaireIntro extends React.Component {
-	static numberInput(text) {
+	numberInput(text) {
 		return text.replace(/\D/g, "");
 	}
 
 	render() {
-		const {
- age, sex: currentSex, height, weight,
-} = this.props;
+		const { age, sex: currentSex, height, weight } = this.props;
 
 		return (
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<KeyboardAvoidingView
 					behavior="height"
-					style={styles.container}
-				>
+					style={styles.container}>
 					<View style={styles.innerContainer}>
 						<QuestionnaireTitle />
 						<View style={styles.field}>
@@ -45,7 +40,7 @@ class QuestionnaireIntro extends React.Component {
 									keyboardType="number-pad"
 									onChangeText={(text) =>
 										this.props.updateAge(
-											this.numberInput(text),
+											this.numberInput(text)
 										)
 									}
 									value={age}
@@ -60,20 +55,18 @@ class QuestionnaireIntro extends React.Component {
 									bordered
 									style={[
 										styles.optionButton,
-										currentSex === sex.MALE
-											&& styles.optionButtonSelected,
+										currentSex === sex.MALE &&
+											styles.optionButtonSelected,
 									]}
 									onPress={() =>
 										this.props.updateSex(sex.MALE)
-									}
-								>
+									}>
 									<Text
 										style={[
 											styles.optionButtonText,
-											currentSex === sex.MALE
-												&& styles.optionButtonSelectedText,
-										]}
-									>
+											currentSex === sex.MALE &&
+												styles.optionButtonSelectedText,
+										]}>
 										Male
 									</Text>
 								</Button>
@@ -81,20 +74,18 @@ class QuestionnaireIntro extends React.Component {
 									bordered
 									style={[
 										styles.optionButton,
-										currentSex === sex.FEMALE
-											&& styles.optionButtonSelected,
+										currentSex === sex.FEMALE &&
+											styles.optionButtonSelected,
 									]}
 									onPress={() =>
 										this.props.updateSex(sex.FEMALE)
-									}
-								>
+									}>
 									<Text
 										style={[
 											styles.optionButtonText,
-											currentSex === sex.FEMALE
-												&& styles.optionButtonSelectedText,
-										]}
-									>
+											currentSex === sex.FEMALE &&
+												styles.optionButtonSelectedText,
+										]}>
 										Female
 									</Text>
 								</Button>
@@ -108,7 +99,7 @@ class QuestionnaireIntro extends React.Component {
 									keyboardType="number-pad"
 									onChangeText={(text) =>
 										this.props.updateWeight(
-											this.numberInput(text),
+											this.numberInput(text)
 										)
 									}
 									value={weight}
@@ -123,7 +114,7 @@ class QuestionnaireIntro extends React.Component {
 									keyboardType="number-pad"
 									onChangeText={(text) =>
 										this.props.updateHeight(
-											this.numberInput(text),
+											this.numberInput(text)
 										)
 									}
 									value={height}

@@ -7,7 +7,6 @@ import styles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
 import QuestionnaireActivityLevelOption from "./components/QuestionnaireActivityLevelOption";
-
 import activityLevel from "../../resources/activityLevel";
 
 class QuestionnaireActivityLevel extends React.Component {
@@ -122,5 +121,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps,
+	mapDispatchToProps
 )(QuestionnaireActivityLevel);

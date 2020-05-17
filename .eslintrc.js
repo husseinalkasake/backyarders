@@ -11,6 +11,7 @@ module.exports = {
 		"react/jsx-indent-props": "off",
 		"react/jsx-indent": "off",
 		"tobject-curly-newline": "off",
+		"linebreak-style": "off",
 
 		// personal preference (look into these later)
 		"implicit-arrow-linebreak": "off",
@@ -19,6 +20,7 @@ module.exports = {
 		"import/no-named-as-default-member": "off",
 		"no-shadow": "off",
 		"react/destructuring-assignment": "off",
+		"object-curly-newline": "always",
 
 		// TODO: TURN THIS ON AFTER ADDING PROP TYPES TO COMPONENTS
 		"react/prop-types": "off",
