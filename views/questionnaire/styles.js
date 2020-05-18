@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
+import colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		justifyContent: "center",
-		backgroundColor: "white",
+		backgroundColor: colors.BACKGROUND_COLOR,
 	},
 	innerContainer: {
 		width: "90%",
@@ -12,8 +13,8 @@ const styles = StyleSheet.create({
 	},
 	field: {
 		flexDirection: "row",
-		paddingTop: 60,
-		marginHorizontal: 24,
+		paddingTop: "24%",
+		marginHorizontal: "10%",
 	},
 	text: {
 		marginTop: 16,
@@ -36,24 +37,24 @@ const styles = StyleSheet.create({
 	},
 	optionButton: {
 		marginLeft: 12,
-		borderColor: "#4B88B0",
+		borderColor: colors.MAIN_COLOR,
 		borderRadius: 15,
 	},
 	optionButtonText: {
-		color: "#4B88B0",
+		color: colors.MAIN_COLOR,
 		fontSize: 12,
 	},
 	optionButtonSelected: {
-		backgroundColor: "#4B88B0",
+		backgroundColor: colors.MAIN_COLOR,
 	},
 	optionButtonSelectedText: {
-		color: "#f4f4f4",
+		color: colors.BACKGROUND_COLOR,
 	},
 	nextButton: {
 		position: "absolute",
 		bottom: "15%",
-		backgroundColor: "#FFD10F",
-		borderColor: "#FFD10F",
+		backgroundColor: colors.NEXT_BUTTON_COLOR,
+		borderColor: colors.NEXT_BUTTON_COLOR,
 		alignSelf: "center",
 		borderRadius: 15,
 	},
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
 	},
 	activityLevel: {
 		marginRight: 12,
-		backgroundColor: "#4B88B0",
+		backgroundColor: colors.MAIN_COLOR,
 		height: 60,
 		width: 80,
 		justifyContent: "center",
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
 	},
 	desiredDifficulty: {
 		marginRight: 48,
-		backgroundColor: "#4B88B0",
+		backgroundColor: colors.MAIN_COLOR,
 		height: 80,
 		width: 100,
 		justifyContent: "center",
