@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { CustomStyleSheet } from "../../styles";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		paddingTop: 48,
@@ -10,43 +10,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		paddingTop: 60,
 		marginHorizontal: 24,
-	},
-	text: {
-		marginTop: 16,
-		fontWeight: "bold",
-		position: "absolute",
-		left: 0,
-	},
-	input: {
-		position: "absolute",
-		right: 0,
-		width: "30%",
-		maxWidth: 240,
-		borderColor: "black",
-		borderRadius: 15,
-	},
-	options: {
-		flexDirection: "row",
-		position: "absolute",
-		right: 0,
-	},
-	optionButton: {
-		marginLeft: 12,
-		borderColor: "#4B88B0",
-		borderRadius: 15,
-	},
-	optionButtonText: {
-		color: "#4B88B0",
-		fontSize: 12,
-	},
-	optionButtonSelected: {
-		backgroundColor: "#4B88B0",
-	},
-	optionButtonSelectedDisabled: {
-		backgroundColor: "gray",
-	},
-	optionButtonSelectedText: {
-		color: "#f4f4f4",
 	},
 	desiredDifficulty: {
 		marginRight: 48,

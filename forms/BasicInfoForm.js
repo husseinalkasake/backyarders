@@ -1,10 +1,5 @@
 import React from "react";
-import {
-	View,
-	KeyboardAvoidingView,
-	TouchableWithoutFeedback,
-	Keyboard,
-} from "react-native";
+import { View } from "react-native";
 import { Item, Button, Text } from "native-base";
 import { connect } from "react-redux";
 import {
@@ -14,25 +9,38 @@ import {
 	updateHeight,
 } from "../redux/actions";
 import sex from "../resources/sex";
-import styles from "../views/questionnaire/styles";
+// import styles from "../views/questionnaire/styles";
 import NumberInput from "../components/NumberInput";
+import { colors, CustomStyleSheet } from "../styles";
 
 class BasicInfoForm extends React.Component {
 	render() {
-		const { age, sex: currentSex, height, weight } = this.props;
+		const {
+			age,
+			sex: currentSex,
+			height,
+			weight,
+			isPersonalProfile,
+			isEnabled,
+		} = this.props;
 		const fields = [
-			this.getAgeField(age),
-			this.getSexField(currentSex),
-			this.getWeightField(weight),
-			this.getHeightField(height),
+			this.getAgeField(age, isPersonalProfile),
+			this.getSexField(currentSex, isPersonalProfile, isEnabled),
+			this.getWeightField(weight, isPersonalProfile),
+			this.getHeightField(height, isPersonalProfile),
 		];
 
 		return fields;
 	}
 
-	getAgeField(age) {
+	getAgeField(age, isPersonalProfile) {
 		return (
-			<View style={styles.field}>
+			<View
+				style={
+					isPersonalProfile
+						? styles.personalProfileField
+						: styles.questionnaireField
+				}>
 				<Text style={styles.text}>Age</Text>
 				<Item regular style={styles.input}>
 					<NumberInput
@@ -43,9 +51,14 @@ class BasicInfoForm extends React.Component {
 			</View>
 		);
 	}
-	getSexField(currentSex) {
+	getSexField(currentSex, isPersonalProfile, isEnabled) {
 		return (
-			<View style={styles.field}>
+			<View
+				style={
+					isPersonalProfile
+						? styles.personalProfileField
+						: styles.questionnaireField
+				}>
 				<Text style={styles.text}>Sex</Text>
 				<View style={styles.options}>
 					<Button
@@ -53,7 +66,9 @@ class BasicInfoForm extends React.Component {
 						style={[
 							styles.optionButton,
 							currentSex === sex.MALE &&
-								styles.optionButtonSelected,
+								(isEnabled
+									? styles.optionButtonSelected
+									: styles.optionButtonSelectedDisabled),
 						]}
 						onPress={() => this.props.updateSex(sex.MALE)}>
 						<Text
@@ -70,7 +85,9 @@ class BasicInfoForm extends React.Component {
 						style={[
 							styles.optionButton,
 							currentSex === sex.FEMALE &&
-								styles.optionButtonSelected,
+								(isEnabled
+									? styles.optionButtonSelected
+									: styles.optionButtonSelectedDisabled),
 						]}
 						onPress={() => this.props.updateSex(sex.FEMALE)}>
 						<Text
@@ -86,9 +103,14 @@ class BasicInfoForm extends React.Component {
 			</View>
 		);
 	}
-	getWeightField(weight) {
+	getWeightField(weight, isPersonalProfile) {
 		return (
-			<View style={styles.field}>
+			<View
+				style={
+					isPersonalProfile
+						? styles.personalProfileField
+						: styles.questionnaireField
+				}>
 				<Text style={styles.text}>Weight (kg)</Text>
 				<Item regular style={styles.input}>
 					<NumberInput
@@ -99,9 +121,14 @@ class BasicInfoForm extends React.Component {
 			</View>
 		);
 	}
-	getHeightField(height) {
+	getHeightField(height, isPersonalProfile) {
 		return (
-			<View style={styles.field}>
+			<View
+				style={
+					isPersonalProfile
+						? styles.personalProfileField
+						: styles.questionnaireField
+				}>
 				<Text style={styles.text}>Height (cm)</Text>
 				<Item regular style={styles.input}>
 					<NumberInput
@@ -113,6 +140,50 @@ class BasicInfoForm extends React.Component {
 		);
 	}
 }
+
+const styles = CustomStyleSheet({
+	input: {
+		position: "absolute",
+		right: 0,
+		width: "30%",
+		maxWidth: 240,
+		borderColor: "black",
+		borderRadius: 15,
+	},
+	optionButton: {
+		marginLeft: 12,
+		borderColor: colors.MAIN_COLOR,
+		borderRadius: 15,
+	},
+	optionButtonText: {
+		color: colors.MAIN_COLOR,
+		fontSize: 12,
+	},
+	optionButtonSelected: {
+		backgroundColor: colors.MAIN_COLOR,
+	},
+	optionButtonSelectedText: {
+		color: colors.BACKGROUND_COLOR,
+	},
+	optionButtonSelectedDisabled: {
+		backgroundColor: "gray",
+	},
+	personalProfileField: {
+		flexDirection: "row",
+		paddingTop: 60,
+		marginHorizontal: 24,
+	},
+	questionnaireField: {
+		flexDirection: "row",
+		paddingTop: "24%",
+		marginHorizontal: "10%",
+	},
+	options: {
+		flexDirection: "row",
+		position: "absolute",
+		right: 0,
+	},
+});
 
 const mapStateToProps = (state) => ({
 	age: state.age,

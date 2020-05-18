@@ -1,7 +1,6 @@
-import { StyleSheet } from "react-native";
-import colors from "../../styles/colors";
+import { colors, CustomStyleSheet } from "../../styles";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		justifyContent: "center",
@@ -10,45 +9,6 @@ const styles = StyleSheet.create({
 	innerContainer: {
 		width: "90%",
 		alignSelf: "center",
-	},
-	field: {
-		flexDirection: "row",
-		paddingTop: "24%",
-		marginHorizontal: "10%",
-	},
-	text: {
-		marginTop: 16,
-		fontWeight: "bold",
-		position: "absolute",
-		left: 0,
-	},
-	input: {
-		position: "absolute",
-		right: 0,
-		width: "30%",
-		maxWidth: 240,
-		borderColor: "black",
-		borderRadius: 15,
-	},
-	options: {
-		flexDirection: "row",
-		position: "absolute",
-		right: 0,
-	},
-	optionButton: {
-		marginLeft: 12,
-		borderColor: colors.MAIN_COLOR,
-		borderRadius: 15,
-	},
-	optionButtonText: {
-		color: colors.MAIN_COLOR,
-		fontSize: 12,
-	},
-	optionButtonSelected: {
-		backgroundColor: colors.MAIN_COLOR,
-	},
-	optionButtonSelectedText: {
-		color: colors.BACKGROUND_COLOR,
 	},
 	nextButton: {
 		position: "absolute",
@@ -67,12 +27,6 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		position: "absolute",
 		left: 0,
-	},
-	subtitle: {
-		marginTop: 16,
-		fontWeight: "bold",
-		position: "absolute",
-		left: "28%",
 	},
 	slider: {
 		width: 350,
@@ -131,10 +85,12 @@ const styles = StyleSheet.create({
 		marginHorizontal: -16,
 	},
 	dragList: {
-		position: "absolute",
 		width: "90%",
 		left: "5%",
-		bottom: "-400%", // HACK DUE TO DRAGLIST ACTING WEIRD
+	},
+	dragListCenter: {
+		position: "absolute",
+		bottom: "-250%", // HACK DUE TO DRAGLIST ACTING WEIRD
 	},
 	dragListItem: {
 		height: 50,

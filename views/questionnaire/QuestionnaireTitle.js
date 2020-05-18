@@ -5,7 +5,7 @@ import styles from "./styles";
 
 export default function QuestionnaireTitle() {
 	return (
-		<View style={styles.field}>
+		<View style={styles.questionnaireField}>
 			<Text style={styles.headingText}>
 				First, help us gather some of your info...
 			</Text>
