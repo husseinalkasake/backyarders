@@ -12,10 +12,11 @@ function FitnessGoalsForm({
 	isQuestionnaire,
 }) {
 	return [
-		<View>
+		<View key="formSubtitle">
 			<Text style={styles.subtitle}>Rank your fitness goals</Text>
 		</View>,
 		<FitnessGoalsDragList
+			key="fitnessGoalsDragList"
 			isQuestionnaire={isQuestionnaire}
 			fitnessGoals={fitnessGoals}
 			updateFitnessGoals={updateFitnessGoals}

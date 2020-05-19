@@ -10,7 +10,7 @@ import questionnaireStyles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
 import desiredDifficulty from "../../resources/desiredDifficulty";
-import { CustomStyleSheet } from "../../styles";
+import { colors, CustomStyleSheet } from "../../styles";
 
 function QuestionnaireDesiredDifficultyOption({ option, currentOption, text }) {
 	return (
@@ -87,10 +87,10 @@ const styles = CustomStyleSheet({
 	...questionnaireStyles,
 	desiredDifficulties: {
 		flexDirection: "row",
-		marginHorizontal: -16,
+		marginHorizontal: "-4%",
 	},
 	desiredDifficulty: {
-		marginRight: 48,
+		marginRight: "12%",
 		backgroundColor: colors.MAIN_COLOR,
 		height: 80,
 		width: 100,

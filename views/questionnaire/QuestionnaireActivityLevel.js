@@ -115,7 +115,7 @@ const styles = CustomStyleSheet({
 	...questionnaireStyles,
 	activityLevels: {
 		flexDirection: "row",
-		marginHorizontal: -16,
+		marginHorizontal: "-2%",
 	},
 });
 

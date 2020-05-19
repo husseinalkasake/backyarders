@@ -12,139 +12,160 @@ import sex from "../resources/sex";
 import NumberInput from "../components/NumberInput";
 import { colors, CustomStyleSheet } from "../styles";
 
-class BasicInfoForm extends React.Component {
-	render() {
-		const {
-			age,
-			sex: currentSex,
-			height,
-			weight,
-			isPersonalProfile,
-			disabled,
-		} = this.props;
-		const fields = [
-			this.getAgeField(age, isPersonalProfile, disabled),
-			this.getSexField(currentSex, isPersonalProfile, disabled),
-			this.getWeightField(weight, isPersonalProfile, disabled),
-			this.getHeightField(height, isPersonalProfile, disabled),
-		];
+function BasicInfoForm({
+	age,
+	sex: currentSex,
+	weight,
+	height,
+	updateAge,
+	updateSex,
+	updateHeight,
+	updateWeight,
+	isPersonalProfile,
+	disabled,
+}) {
+	return [
+		<AgeField
+			key="ageField"
+			age={age}
+			isPersonalProfile={isPersonalProfile}
+			disabled={disabled}
+			updateAge={updateAge}
+		/>,
+		<SexField
+			key="sexField"
+			currentSex={currentSex}
+			isPersonalProfile={isPersonalProfile}
+			disabled={disabled}
+			updateSex={updateSex}
+		/>,
+		<WeightField
+			key="weightField"
+			weight={weight}
+			isPersonalProfile={isPersonalProfile}
+			disabled={disabled}
+			updateWeight={updateWeight}
+		/>,
+		<HeightField
+			key="heightField"
+			height={height}
+			isPersonalProfile={isPersonalProfile}
+			disabled={disabled}
+			updateHeight={updateHeight}
+		/>,
+	];
+}
 
-		return fields;
-	}
+function AgeField({ age, isPersonalProfile, disabled, updateAge }) {
+	return (
+		<View
+			style={
+				isPersonalProfile
+					? styles.personalProfileField
+					: styles.questionnaireField
+			}>
+			<Text style={styles.text}>Age</Text>
+			<Item regular style={styles.input}>
+				<NumberInput
+					value={age}
+					disabled={disabled}
+					onChangeText={(text) => updateAge(text)}
+				/>
+			</Item>
+		</View>
+	);
+}
 
-	getAgeField(age, isPersonalProfile, disabled) {
-		return (
-			<View
-				style={
-					isPersonalProfile
-						? styles.personalProfileField
-						: styles.questionnaireField
-				}>
-				<Text style={styles.text}>Age</Text>
-				<Item regular style={styles.input}>
-					<NumberInput
-						value={age}
-						disabled={disabled}
-						onChangeText={(text) => this.props.updateAge(text)}
-					/>
-				</Item>
-			</View>
-		);
-	}
-	getSexField(currentSex, isPersonalProfile, disabled) {
-		return (
-			<View
-				style={
-					isPersonalProfile
-						? styles.personalProfileField
-						: styles.questionnaireField
-				}>
-				<Text style={styles.text}>Sex</Text>
-				<View style={styles.options}>
-					<Button
-						bordered
+function SexField({ currentSex, isPersonalProfile, disabled, updateSex }) {
+	return (
+		<View
+			style={
+				isPersonalProfile
+					? styles.personalProfileField
+					: styles.questionnaireField
+			}>
+			<Text style={styles.text}>Sex</Text>
+			<View style={styles.options}>
+				<Button
+					bordered
+					style={[
+						styles.optionButton,
+						currentSex === sex.MALE &&
+							(disabled
+								? styles.optionButtonSelectedDisabled
+								: styles.optionButtonSelected),
+					]}
+					onPress={() => !disabled && updateSex(sex.MALE)}>
+					<Text
 						style={[
-							styles.optionButton,
+							styles.optionButtonText,
 							currentSex === sex.MALE &&
-								(disabled
-									? styles.optionButtonSelectedDisabled
-									: styles.optionButtonSelected),
-						]}
-						onPress={() =>
-							!disabled && this.props.updateSex(sex.MALE)
-						}>
-						<Text
-							style={[
-								styles.optionButtonText,
-								currentSex === sex.MALE &&
-									styles.optionButtonSelectedText,
-							]}>
-							Male
-						</Text>
-					</Button>
-					<Button
-						bordered
+								styles.optionButtonSelectedText,
+						]}>
+						Male
+					</Text>
+				</Button>
+				<Button
+					bordered
+					style={[
+						styles.optionButton,
+						currentSex === sex.FEMALE &&
+							(disabled
+								? styles.optionButtonSelectedDisabled
+								: styles.optionButtonSelected),
+					]}
+					onPress={() => !disabled && updateSex(sex.FEMALE)}>
+					<Text
 						style={[
-							styles.optionButton,
+							styles.optionButtonText,
 							currentSex === sex.FEMALE &&
-								(disabled
-									? styles.optionButtonSelectedDisabled
-									: styles.optionButtonSelected),
-						]}
-						onPress={() =>
-							!disabled && this.props.updateSex(sex.FEMALE)
-						}>
-						<Text
-							style={[
-								styles.optionButtonText,
-								currentSex === sex.FEMALE &&
-									styles.optionButtonSelectedText,
-							]}>
-							Female
-						</Text>
-					</Button>
-				</View>
+								styles.optionButtonSelectedText,
+						]}>
+						Female
+					</Text>
+				</Button>
 			</View>
-		);
-	}
-	getWeightField(weight, isPersonalProfile, disabled) {
-		return (
-			<View
-				style={
-					isPersonalProfile
-						? styles.personalProfileField
-						: styles.questionnaireField
-				}>
-				<Text style={styles.text}>Weight (kg)</Text>
-				<Item regular style={styles.input}>
-					<NumberInput
-						disabled={disabled}
-						onChangeText={(text) => this.props.updateWeight(text)}
-						value={weight}
-					/>
-				</Item>
-			</View>
-		);
-	}
-	getHeightField(height, isPersonalProfile, disabled) {
-		return (
-			<View
-				style={
-					isPersonalProfile
-						? styles.personalProfileField
-						: styles.questionnaireField
-				}>
-				<Text style={styles.text}>Height (cm)</Text>
-				<Item regular style={styles.input}>
-					<NumberInput
-						disabled={disabled}
-						onChangeText={(text) => this.props.updateHeight(text)}
-						value={height}
-					/>
-				</Item>
-			</View>
-		);
-	}
+		</View>
+	);
+}
+function WeightField({ weight, isPersonalProfile, disabled, updateWeight }) {
+	return (
+		<View
+			style={
+				isPersonalProfile
+					? styles.personalProfileField
+					: styles.questionnaireField
+			}>
+			<Text style={styles.text}>Weight (kg)</Text>
+			<Item regular style={styles.input}>
+				<NumberInput
+					disabled={disabled}
+					onChangeText={(text) => updateWeight(text)}
+					value={weight}
+				/>
+			</Item>
+		</View>
+	);
+}
+
+function HeightField({ height, isPersonalProfile, disabled, updateHeight }) {
+	return (
+		<View
+			style={
+				isPersonalProfile
+					? styles.personalProfileField
+					: styles.questionnaireField
+			}>
+			<Text style={styles.text}>Height (cm)</Text>
+			<Item regular style={styles.input}>
+				<NumberInput
+					disabled={disabled}
+					onChangeText={(text) => updateHeight(text)}
+					value={height}
+				/>
+			</Item>
+		</View>
+	);
 }
 
 const styles = CustomStyleSheet({

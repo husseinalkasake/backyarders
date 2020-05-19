@@ -3,8 +3,7 @@ This page shows the personal profile of a user.
 */
 
 import React from "react";
-import { View, TouchableOpacity, Keyboard, ScrollView } from "react-native";
-import DraggableFlatList from "react-native-draggable-flatlist";
+import { View, Keyboard, ScrollView } from "react-native";
 import {
 	updateActivityLevel,
 	updateDesiredDifficulty,

@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text, Icon } from "native-base";
 import questionnaireStyles from "../styles";
-import { CustomStyleSheet } from "../../../styles";
+import { colors, CustomStyleSheet } from "../../../styles";
 
 class QuestionnaireActivityLevelOption extends React.Component {
 	getTooltipText() {
@@ -48,7 +48,7 @@ const styles = CustomStyleSheet({
 	icon: {
 		alignSelf: "center",
 		paddingTop: 6,
-		paddingRight: 12,
+		paddingRight: "6%",
 		fontSize: 24,
 	},
 	tooltipText: {
@@ -58,7 +58,7 @@ const styles = CustomStyleSheet({
 		left: 6,
 	},
 	activityLevel: {
-		marginRight: 12,
+		marginRight: "6%",
 		backgroundColor: colors.MAIN_COLOR,
 		height: 60,
 		width: 80,
