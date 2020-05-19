@@ -11,11 +11,11 @@ import {
 } from "../../redux/actions";
 import { connect } from "react-redux";
 import { Button, Text, Picker } from "native-base";
-import styles from "./styles";
 import activityLevel from "../../resources/activityLevel";
 import desiredDifficulty from "../../resources/desiredDifficulty";
 import BasicInfoForm from "../../forms/BasicInfoForm";
 import FitnessGoalsDragList from "../../forms/components/FitnessGoalsDragList";
+import { colors, CustomStyleSheet } from "../../styles";
 
 class PersonalProfile extends React.Component {
 	constructor(props) {
@@ -123,6 +123,33 @@ class PersonalProfile extends React.Component {
 		);
 	}
 }
+
+const styles = CustomStyleSheet({
+	container: {
+		flex: 1,
+		paddingTop: 48,
+		backgroundColor: "white",
+	},
+	field: {
+		flexDirection: "row",
+		paddingTop: 60,
+		marginHorizontal: 24,
+	},
+	desiredDifficulty: {
+		marginRight: 48,
+		backgroundColor: colors.MAIN_COLOR,
+		height: 80,
+		width: 100,
+		justifyContent: "center",
+		position: "relative",
+		borderRadius: 45,
+	},
+	editButton: {
+		position: "absolute",
+		right: 12,
+		backgroundColor: colors.MAIN_COLOR,
+	},
+});
 
 const mapStateToProps = (state) => ({
 	activityLevel: state.activityLevel,
