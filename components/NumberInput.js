@@ -7,10 +7,11 @@ class NumberInput extends React.Component {
 	}
 
 	render() {
-		const { value, onChangeText } = this.props;
+		const { value, onChangeText, disabled } = this.props;
 		return (
 			<Input
 				keyboardType="number-pad"
+				disabled={disabled}
 				onChangeText={(text) =>
 					onChangeText && onChangeText(this.numberInput(text))
 				}

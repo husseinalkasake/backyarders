@@ -19,18 +19,24 @@ class FitnessGoalsDragList extends React.Component {
 		<TouchableOpacity
 			style={{
 				...styles.dragListItem,
-				backgroundColor: this.props.isEdit
+				backgroundColor: !this.props.disabled
 					? item.backgroundColor
 					: "gray",
 			}}
-			onPressIn={() => this.props.isEdit && drag()}>
+			onPressIn={() => !this.props.disabled && drag()}>
 			<Text style={styles.dragListItemText}>{item.label}</Text>
 		</TouchableOpacity>
 	);
 
 	render() {
 		return (
-			<View style={[styles.dragList, styles.dragListCenter]}>
+			<View
+				style={[
+					styles.dragList,
+					this.props.isQuestionnaire
+						? styles.questionnaireDragList
+						: {},
+				]}>
 				<DraggableFlatList
 					data={this.getDraggableListData()}
 					renderItem={this.draggableListItem}
@@ -50,6 +56,10 @@ const styles = CustomStyleSheet({
 	dragList: {
 		width: "90%",
 		left: "5%",
+	},
+	questionnaireDragList: {
+		position: "absolute",
+		bottom: "-250%", // HACK DUE TO DRAGLIST ACTING WEIRD
 	},
 	dragListItem: {
 		height: 50,

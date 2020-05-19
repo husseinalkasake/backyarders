@@ -79,7 +79,7 @@ class PersonalProfile extends React.Component {
 
 		return (
 			<ScrollView style={styles.container}>
-				<BasicInfoForm isPersonalProfile={true} isEnabled={isEdit} />
+				<BasicInfoForm isPersonalProfile={true} disabled={!isEdit} />
 				<View style={styles.field}>
 					<Text style={styles.text}>Current Activity Level</Text>
 					<Picker
@@ -100,7 +100,7 @@ class PersonalProfile extends React.Component {
 				)}
 				{!this.state.keyboardShowing && (
 					<FitnessGoalsDragList
-						isEdit={this.state.isEdit}
+						disabled={!this.state.isEdit}
 						fitnessGoals={this.props.fitnessGoals}
 						updateFitnessGoals={this.props.updateFitnessGoals}
 					/>

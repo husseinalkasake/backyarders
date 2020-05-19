@@ -6,22 +6,20 @@ import {
 	updateDesiredDifficulty,
 	updateAppFirstTimeUsage,
 } from "../../redux/actions";
-import styles from "./styles";
+import questionnaireStyles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
-
 import desiredDifficulty from "../../resources/desiredDifficulty";
+import { CustomStyleSheet } from "../../styles";
 
 function QuestionnaireDesiredDifficultyOption({ option, currentOption, text }) {
 	return (
 		<View style={styles.desiredDifficulty}>
 			<Text
 				style={[
-					styles.activityLevelText,
-					currentOption === option
-						&& styles.activityLevelTextSelected,
-				]}
-			>
+					styles.sliderOptionText,
+					currentOption === option && styles.sliderOptionTextSelected,
+				]}>
 				{text}
 			</Text>
 		</View>
@@ -85,6 +83,23 @@ function QuestionnaireDesiredDifficulty({
 	);
 }
 
+const styles = CustomStyleSheet({
+	...questionnaireStyles,
+	desiredDifficulties: {
+		flexDirection: "row",
+		marginHorizontal: -16,
+	},
+	desiredDifficulty: {
+		marginRight: 48,
+		backgroundColor: colors.MAIN_COLOR,
+		height: 80,
+		width: 100,
+		justifyContent: "center",
+		position: "relative",
+		borderRadius: 45,
+	},
+});
+
 const mapStateToProps = (state) => ({
 	desiredDifficulty: state.desiredDifficulty,
 });
@@ -97,5 +112,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps,
+	mapDispatchToProps
 )(QuestionnaireDesiredDifficulty);

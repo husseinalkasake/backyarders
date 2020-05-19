@@ -9,7 +9,6 @@ import {
 	updateHeight,
 } from "../redux/actions";
 import sex from "../resources/sex";
-// import styles from "../views/questionnaire/styles";
 import NumberInput from "../components/NumberInput";
 import { colors, CustomStyleSheet } from "../styles";
 
@@ -21,19 +20,19 @@ class BasicInfoForm extends React.Component {
 			height,
 			weight,
 			isPersonalProfile,
-			isEnabled,
+			disabled,
 		} = this.props;
 		const fields = [
-			this.getAgeField(age, isPersonalProfile),
-			this.getSexField(currentSex, isPersonalProfile, isEnabled),
-			this.getWeightField(weight, isPersonalProfile),
-			this.getHeightField(height, isPersonalProfile),
+			this.getAgeField(age, isPersonalProfile, disabled),
+			this.getSexField(currentSex, isPersonalProfile, disabled),
+			this.getWeightField(weight, isPersonalProfile, disabled),
+			this.getHeightField(height, isPersonalProfile, disabled),
 		];
 
 		return fields;
 	}
 
-	getAgeField(age, isPersonalProfile) {
+	getAgeField(age, isPersonalProfile, disabled) {
 		return (
 			<View
 				style={
@@ -45,13 +44,14 @@ class BasicInfoForm extends React.Component {
 				<Item regular style={styles.input}>
 					<NumberInput
 						value={age}
+						disabled={disabled}
 						onChangeText={(text) => this.props.updateAge(text)}
 					/>
 				</Item>
 			</View>
 		);
 	}
-	getSexField(currentSex, isPersonalProfile, isEnabled) {
+	getSexField(currentSex, isPersonalProfile, disabled) {
 		return (
 			<View
 				style={
@@ -66,11 +66,13 @@ class BasicInfoForm extends React.Component {
 						style={[
 							styles.optionButton,
 							currentSex === sex.MALE &&
-								(isEnabled
-									? styles.optionButtonSelected
-									: styles.optionButtonSelectedDisabled),
+								(disabled
+									? styles.optionButtonSelectedDisabled
+									: styles.optionButtonSelected),
 						]}
-						onPress={() => this.props.updateSex(sex.MALE)}>
+						onPress={() =>
+							!disabled && this.props.updateSex(sex.MALE)
+						}>
 						<Text
 							style={[
 								styles.optionButtonText,
@@ -85,11 +87,13 @@ class BasicInfoForm extends React.Component {
 						style={[
 							styles.optionButton,
 							currentSex === sex.FEMALE &&
-								(isEnabled
-									? styles.optionButtonSelected
-									: styles.optionButtonSelectedDisabled),
+								(disabled
+									? styles.optionButtonSelectedDisabled
+									: styles.optionButtonSelected),
 						]}
-						onPress={() => this.props.updateSex(sex.FEMALE)}>
+						onPress={() =>
+							!disabled && this.props.updateSex(sex.FEMALE)
+						}>
 						<Text
 							style={[
 								styles.optionButtonText,
@@ -103,7 +107,7 @@ class BasicInfoForm extends React.Component {
 			</View>
 		);
 	}
-	getWeightField(weight, isPersonalProfile) {
+	getWeightField(weight, isPersonalProfile, disabled) {
 		return (
 			<View
 				style={
@@ -114,6 +118,7 @@ class BasicInfoForm extends React.Component {
 				<Text style={styles.text}>Weight (kg)</Text>
 				<Item regular style={styles.input}>
 					<NumberInput
+						disabled={disabled}
 						onChangeText={(text) => this.props.updateWeight(text)}
 						value={weight}
 					/>
@@ -121,7 +126,7 @@ class BasicInfoForm extends React.Component {
 			</View>
 		);
 	}
-	getHeightField(height, isPersonalProfile) {
+	getHeightField(height, isPersonalProfile, disabled) {
 		return (
 			<View
 				style={
@@ -132,6 +137,7 @@ class BasicInfoForm extends React.Component {
 				<Text style={styles.text}>Height (cm)</Text>
 				<Item regular style={styles.input}>
 					<NumberInput
+						disabled={disabled}
 						onChangeText={(text) => this.props.updateHeight(text)}
 						value={height}
 					/>

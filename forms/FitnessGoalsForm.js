@@ -6,12 +6,17 @@ import { updateFitnessGoals } from "../redux/actions";
 import styles from "../views/questionnaire/styles";
 import FitnessGoalsDragList from "./components/FitnessGoalsDragList";
 
-function FitnessGoalsForm({ fitnessGoals, updateFitnessGoals }) {
+function FitnessGoalsForm({
+	fitnessGoals,
+	updateFitnessGoals,
+	isQuestionnaire,
+}) {
 	return [
 		<View>
 			<Text style={styles.subtitle}>Rank your fitness goals</Text>
 		</View>,
 		<FitnessGoalsDragList
+			isQuestionnaire={isQuestionnaire}
 			fitnessGoals={fitnessGoals}
 			updateFitnessGoals={updateFitnessGoals}
 		/>,
