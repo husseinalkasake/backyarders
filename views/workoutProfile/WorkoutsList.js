@@ -13,7 +13,7 @@ import {
 	StyleSheet,
 } from "react-native";
 
-import workouts from "../../resources/workoutTypes";
+import { workouts, workoutLevels } from "../../resources/workoutTypes";
 
 const styles = StyleSheet.create({
 	container: {
@@ -27,12 +27,41 @@ const styles = StyleSheet.create({
 	},
 });
 
-const sortNextBy = {
-	alphabetical: "type",
-	type: "level",
-	level: "alphabetical",
+// main enum that holds the types of sorting
+const SORT_BY = {
+	ALPHABETICAL: "alphabetical",
+	LEVEL: "level",
+	TYPE: "type",
 };
 
+// used to sort differently every on every press
+const sortNextBy = {
+	alphabetical: SORT_BY.TYPE,
+	type: SORT_BY.LEVEL,
+	level: SORT_BY.ALPHABETICAL,
+};
+
+// TODO cahnge this to colors we actually like
+function getBackgroundColor(level) {
+	let backgroundColor;
+	switch (level) {
+		case workoutLevels[1]:
+			backgroundColor = "rgba(0, 255, 0, 0.3)";
+			break;
+		case workoutLevels[2]:
+			backgroundColor = "rgba(0, 0, 255, 0.3)";
+			break;
+		case workoutLevels[3]:
+			backgroundColor = "rgba(255, 0, 0, 0.3)";
+			break;
+		default:
+			// case workoutLevels[0]:
+			backgroundColor = "#fff";
+	}
+	return { backgroundColor };
+}
+
+// renderes the headers of each section in the section list
 const renderSectionHeader = ({ section }) => <Text>{section.title}</Text>;
 
 function WorkoutsList({ route, navigation }) {
@@ -53,7 +82,7 @@ function WorkoutsList({ route, navigation }) {
 		),
 	});
 
-	if (sortBy === "alphabetical") {
+	if (sortBy === SORT_BY.ALPHABETICAL) {
 		const workoutsByLetter = workouts.reduce((obj, workout) => {
 			const firstLetter = workout.name[0].toUpperCase();
 
@@ -69,9 +98,9 @@ function WorkoutsList({ route, navigation }) {
 				data: workoutsByLetter[letter],
 				title: letter,
 			}));
-	} else if (sortBy === "type") {
+	} else if (sortBy === SORT_BY.TYPE) {
 		const workoutsByType = workouts.reduce((obj, workout) => {
-			const { type } = workout;
+			const type = workout.type;
 
 			return {
 				...obj,
@@ -85,9 +114,9 @@ function WorkoutsList({ route, navigation }) {
 				data: workoutsByType[type],
 				title: type,
 			}));
-	} else if (sortBy === "level") {
+	} else if (sortBy === SORT_BY.LEVEL) {
 		const workoutsByLevel = workouts.reduce((obj, workout) => {
-			const { level } = workout;
+			const level = workout.level;
 
 			return {
 				...obj,
@@ -109,9 +138,10 @@ function WorkoutsList({ route, navigation }) {
 			sections={sections}
 			renderItem={({ item }) => (
 				<TouchableOpacity
-					style={styles.row}
-					onPress={() => navigation.navigate("WorkoutProfile")} // {workout: item.workout}
-				>
+					style={[styles.row, getBackgroundColor(item.level)]}
+					onPress={() =>
+						navigation.navigate("WorkoutProfile", { workout: item })
+					}>
 					<Text>{item.name}</Text>
 				</TouchableOpacity>
 			)}

@@ -3,7 +3,8 @@ This page plays the workouts dynamically.
 */
 
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
+import SampleTimer from "./SampleTimer";
 
 const styles = StyleSheet.create({
 	container: {
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-function NutritionPlate({ navigation }) {
+function TodaysWorkout({ navigation }) {
 	const title = "Today's Workout";
 	navigation.setOptions({
 		title,
@@ -22,10 +23,9 @@ function NutritionPlate({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<Text>{title}</Text>
-			<Text>Coming Soon</Text>
+			<SampleTimer />
 		</View>
 	);
 }
 
-export default NutritionPlate;
+export default TodaysWorkout;

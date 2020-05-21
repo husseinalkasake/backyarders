@@ -1,11 +1,16 @@
-const levels = {
+export const workoutLevels = {
 	0: "Beginner",
 	1: "Intermediate",
 	2: "Pro",
 	3: "Challenge",
 };
 
-const types = {
+const absLevels = {
+	0: "Easy",
+	1: "Hard",
+};
+
+const workoutTypes = {
 	push: "Push",
 	pull: "Pull",
 	legs: "Legs",
@@ -13,9 +18,23 @@ const types = {
 	hiit: "H.I.I.T.",
 };
 
-const workouts = [
-	{ level: levels[0], type: types.legs, name: "Basic Squat" },
-	{ level: levels[3], type: types.push, name: "Clap Push-up" },
-];
+export const NOT_APPLICABLE = "NA";
 
-export default workouts;
+export const workouts = [
+	{
+		level: workoutLevels[0],
+		type: workoutTypes.legs,
+		name: "Basic Squat",
+		sourceMain: "",
+		sourceEdu: "/Bj2d", //require("../assets/workoutEdu/mountain_climbers.mov"),
+		muscles: "Glutes/Hamstrings",
+	},
+	{
+		level: workoutLevels[3],
+		type: workoutTypes.push,
+		name: "Clap Push-up",
+		sourceMain: "/Bj2d", //require("../assets/workoutEdu/mountain_climbers.mov"),
+		sourceEdu: "NA",
+		muscles: "Chest/Shoulders",
+	},
+];
