@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated, Dimensions, Easing, StyleSheet, View } from "react-native";
+import { Animated, Dimensions, Easing, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	progress: {
@@ -14,6 +14,7 @@ class ProgressBar extends React.Component {
 		super(props);
 		this.state = {
 			percent: new Animated.Value(0),
+			pausedAt: null,
 		};
 	}
 
@@ -22,6 +23,12 @@ class ProgressBar extends React.Component {
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
+		if (!nextProps.isRunning) {
+			this.state.percent.stopAnimation((finalValue) => {
+				// TODO this always returns a zero ...
+				this.setState({ pausedAt: finalValue });
+			});
+		}
 		if (nextProps.timeRemaining > this.props.timeRemaining) {
 			this.setState(
 				{ percent: new Animated.Value(0) },
