@@ -12,7 +12,7 @@ import { ScrollView, Text, StyleSheet } from "react-native";
 
 import WorkoutVideo from "./WorkoutVideo";
 
-import { NOT_APPLICABLE } from "../../resources/workoutTypes";
+import { NOT_APPLICABLE } from "../../resources/workouts";
 
 const styles = StyleSheet.create({
 	container: {

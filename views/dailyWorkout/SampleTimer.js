@@ -1,26 +1,39 @@
+/*
+This is the meat of this app!
+This is where the daily workout routine takes place.
+
+This component reads the workout
+*/
+
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { connect } from "react-redux";
 
 import { Countdown, TimeInput, TimerToggleButton } from "./TimerComponents";
 import { Timer, vibrate } from "./utils";
 import ProgressBar from "./ProgressBarAnimated";
+import workoutDurationSec from "../../resources/workoutDurationSec";
+import workouts from "../../resources/workouts";
 
-const DEFAULT_WORK_MINS = 0.1;
-const DEFAULT_BREAK_MINS = 0.1;
-
-const minToSec = (mins) => mins * 60;
 const nextTimer = { work: "break", break: "work" };
 
-export default class SampleTimer extends React.Component {
+class SampleTimer extends React.Component {
 	constructor(props) {
 		super(props);
 
+		// get a list of the of the workouts that can be used in this day's workout
+		const availableWorkouts = workouts.filter(
+			(workout) =>
+				workout.level === this.props.desiredDifficulty && // must be the same level as the user wants
+				workout.type === this.props.weeksWorkouts[0] // must be in the pool of the day's workouts
+		);
+
 		this.state = {
 			// in seconds
-			workTime: minToSec(DEFAULT_WORK_MINS),
-			breakTime: minToSec(DEFAULT_BREAK_MINS),
+			workTime: workoutDurationSec.NOT_HIIT,
+			breakTime: workoutDurationSec.NOT_HIIT,
 			// in ms
-			timeRemaining: minToSec(DEFAULT_WORK_MINS) * 1000,
+			timeRemaining: workoutDurationSec.NOT_HIIT * 1000, // we start with all the work time
 			isRunning: false,
 			activeTimer: "work",
 		};
@@ -104,7 +117,6 @@ export default class SampleTimer extends React.Component {
 	}
 
 	render() {
-		if (Math.round(Math.random())) this.block();
 		return (
 			<View style={styles.container}>
 				<Text style={[styles.title, styles.center]}>
@@ -127,20 +139,17 @@ export default class SampleTimer extends React.Component {
 					/>
 					<Button title="Reset" onPress={this.resetTimer} />
 				</View>
-				<TimeInput
-					title="WORK TIME:"
-					onChange={this.updateTime("work")}
-					value={this.state.workTime}
-				/>
-				<TimeInput
-					title="BREAK TIME:"
-					onChange={this.updateTime("break")}
-					value={this.state.breakTime}
-				/>
 			</View>
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	weeksWorkouts: state.weeksWorkouts,
+	desiredDifficulty: state.desiredDifficulty,
+});
+
+export default connect(mapStateToProps)(SampleTimer);
 
 const styles = StyleSheet.create({
 	container: {
@@ -160,3 +169,24 @@ const styles = StyleSheet.create({
 		fontSize: 48,
 	},
 });
+
+// function that returns the passed in array in random order
+function shuffle(array) {
+	var currentIndex = array.length,
+		temporaryValue,
+		randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+}
