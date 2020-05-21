@@ -5,9 +5,8 @@ It has a start button at the bottom to start today's workout.
 */
 
 import React from "react";
-import {
- View, Text, Button, StyleSheet,
-} from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
+import { connect } from "react-redux";
 
 const styles = StyleSheet.create({
 	container: {
@@ -18,15 +17,17 @@ const styles = StyleSheet.create({
 	},
 });
 
-function WeekWorkouts({ navigation }) {
+function WeekWorkouts({ navigation, weeksWorkouts }) {
 	navigation.setOptions({
 		title: "This Week's Workouts",
 	});
 
 	return (
 		<View style={styles.container}>
-			<Text>Week Workouts</Text>
-			<Text>Coming Soon</Text>
+			<Text>This Week's Workouts</Text>
+			{weeksWorkouts.map((type, i) => (
+				<Text key={`workout_${i}`}>{type}</Text>
+			))}
 			<Button
 				title="Start Today's Workout"
 				onPress={() => navigation.navigate("TodaysWorkout")}
@@ -35,4 +36,8 @@ function WeekWorkouts({ navigation }) {
 	);
 }
 
-export default WeekWorkouts;
+const mapStateToProps = (state) => ({
+	weeksWorkouts: state.weeksWorkouts,
+});
+
+export default connect(mapStateToProps)(WeekWorkouts);

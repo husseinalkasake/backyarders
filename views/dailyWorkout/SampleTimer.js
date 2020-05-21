@@ -2,7 +2,13 @@
 This is the meat of this app!
 This is where the daily workout routine takes place.
 
-This component reads the workout
+This component takes the desired workout intensity of the user and the day's workout type,
+it then filters the pool of workouts to find the workouts that fit those two criteria.
+
+It picks a random set of workouts for the day:
+- 5 exercises if user chooses 30 mins (each exercise repeats 3 times)
+- 7 exercises if user chooses 45 mins + 3 mins stretch (each exercise repeats 3 times)
+- 7 exercises if user chooses 60 mins + 4 mins stretch (each exercise repeats 4 times)
 */
 
 import React from "react";
@@ -27,6 +33,22 @@ class SampleTimer extends React.Component {
 				workout.level === this.props.desiredDifficulty && // must be the same level as the user wants
 				workout.type === this.props.weeksWorkouts[0] // must be in the pool of the day's workouts
 		);
+
+		// shuffle the workouts to get a random set
+		const shuffledWorkouts = shuffle(availableWorkouts);
+
+		// TODO make this dynamic to choose number of exercises based on availabilty of time -> slice to 4 / 6
+		const todaysWorkouts = shuffledWorkouts.slice(0, 4);
+
+		// make an array of the exact workout sequence that the user will undergo
+		let workoutSequence = []; // TODO add stretch based on time
+
+		todaysWorkouts.map((workout) => {
+			// TODO change this to be 4 if user has 60 mins to workout
+			for (let i = 0; i < 3; i++) {
+				workoutSequence.push(workout);
+			}
+		});
 
 		this.state = {
 			// in seconds
