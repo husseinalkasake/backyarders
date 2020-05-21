@@ -1,7 +1,8 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Text, Icon } from "native-base";
-import styles from "../styles";
+import questionnaireStyles from "../styles";
+import { colors, CustomStyleSheet } from "../../../styles";
 
 class QuestionnaireActivityLevelOption extends React.Component {
 	getTooltipText() {
@@ -12,19 +13,16 @@ class QuestionnaireActivityLevelOption extends React.Component {
 	}
 
 	render() {
-		const {
- option, text, currentOption, tooltip, onTooltip,
-} = this.props;
+		const { option, text, currentOption, tooltip, onTooltip } = this.props;
 		return (
 			<View>
 				<View style={styles.activityLevel}>
 					<Text
 						style={[
-							styles.activityLevelText,
-							currentOption === option
-								&& styles.activityLevelTextSelected,
-						]}
-					>
+							styles.sliderOptionText,
+							currentOption === option &&
+								styles.sliderOptionTextSelected,
+						]}>
 						{text}
 					</Text>
 				</View>
@@ -44,5 +42,30 @@ class QuestionnaireActivityLevelOption extends React.Component {
 		);
 	}
 }
+
+const styles = CustomStyleSheet({
+	...questionnaireStyles,
+	icon: {
+		alignSelf: "center",
+		paddingTop: 6,
+		paddingRight: "6%",
+		fontSize: 24,
+	},
+	tooltipText: {
+		fontSize: 12,
+		position: "absolute",
+		bottom: -48,
+		left: 6,
+	},
+	activityLevel: {
+		marginRight: "6%",
+		backgroundColor: colors.MAIN_COLOR,
+		height: 60,
+		width: 80,
+		justifyContent: "center",
+		position: "relative",
+		borderRadius: 45,
+	},
+});
 
 export default QuestionnaireActivityLevelOption;

@@ -3,15 +3,16 @@ import { View, Slider } from "react-native";
 import { Text } from "native-base";
 import { connect } from "react-redux";
 import { updateActivityLevel } from "../../redux/actions";
-import styles from "./styles";
+import questionnaireStyles from "./styles";
 import QuestionnaireTitle from "./QuestionnaireTitle";
 import QuestionnaireNextButton from "./QuestionnaireNextButton";
 import QuestionnaireActivityLevelOption from "./components/QuestionnaireActivityLevelOption";
 import activityLevel from "../../resources/activityLevel";
+import { CustomStyleSheet } from "../../styles";
 
 class QuestionnaireActivityLevel extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			tooltip: activityLevel.UNDEFINED,
 		};
@@ -109,6 +110,14 @@ class QuestionnaireActivityLevel extends React.Component {
 		);
 	}
 }
+
+const styles = CustomStyleSheet({
+	...questionnaireStyles,
+	activityLevels: {
+		flexDirection: "row",
+		marginHorizontal: "-2%",
+	},
+});
 
 const mapStateToProps = (state) => ({
 	activityLevel: state.activityLevel,
