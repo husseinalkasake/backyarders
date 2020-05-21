@@ -8,7 +8,7 @@ It thens renders the info and the video.
 */
 
 import React from "react";
-import { ScrollView, Text, Button, StyleSheet } from "react-native";
+import { ScrollView, Text, StyleSheet } from "react-native";
 
 import WorkoutVideo from "./WorkoutVideo";
 
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
 });
 
 function WorkoutProfile({ route, navigation }) {
-	const { workout } = route.params; // get the workout object which has the following keys: type, level, name, sourceMain, sourceEdu
+	// get the workout object which has the following keys: type, level, name, sourceMain, sourceEdu
+	const { workout } = route.params;
 
 	navigation.setOptions({
 		title: workout.name,
@@ -48,7 +49,7 @@ function WorkoutProfile({ route, navigation }) {
 
 			<WorkoutVideo
 				source={
-					workout.sourceEdu == NOT_APPLICABLE
+					workout.sourceEdu === NOT_APPLICABLE
 						? { uri: `https://gdurl.com${workout.sourceMain}` }
 						: { uri: `https://gdurl.com${workout.sourceEdu}` }
 				}

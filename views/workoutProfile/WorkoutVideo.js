@@ -57,9 +57,7 @@ class WorkoutVideo extends React.Component {
 						<Video
 							source={this.props.source}
 							style={{
-								width:
-									this.props.width ||
-									Dimensions.get("window").width, // 360 / 1.2, // we might wanna divide it by a factor
+								width: this.props.width || "100%", // Dimensions.get("window").width, // 360 / 1.2, // we might wanna divide it by a factor
 								height:
 									this.props.height ||
 									Dimensions.get("window").width * 2, // 640 / 1.2, // we might wanna divide it by a factor

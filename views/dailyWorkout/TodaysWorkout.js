@@ -23,8 +23,6 @@ function TodaysWorkout({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<Text>{title}</Text>
-			<Text>Coming Soon</Text>
 			<SampleTimer />
 		</View>
 	);
