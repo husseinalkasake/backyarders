@@ -9,6 +9,9 @@ const workoutTypes = {
 	LEGS: "Legs",
 	ABS: "Abs",
 	HIIT: "H.I.I.T.",
+	COOL_DOWN: "Cool Down",
+	WARM_UP: "Warm Up",
+	BREAK: "Break",
 };
 
 export default workoutTypes;

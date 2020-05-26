@@ -1,14 +1,5 @@
 /*
-This is the meat of this app!
-This is where the daily workout routine takes place.
-
-This component takes the desired workout intensity of the user and the day's workout type,
-it then filters the pool of workouts to find the workouts that fit those two criteria.
-
-It picks a random set of workouts for the day:
-- 5 exercises if user chooses 30 mins (each exercise repeats 3 times)
-- 7 exercises if user chooses 45 mins + 3 mins stretch (each exercise repeats 3 times)
-- 7 exercises if user chooses 60 mins + 4 mins stretch (each exercise repeats 4 times)
+TODO make a new time for every item in the workoutRoutine array
 */
 
 import React from "react";
@@ -19,41 +10,25 @@ import { Countdown, TimeInput, TimerToggleButton } from "./TimerComponents";
 import { Timer, vibrate } from "./utils";
 import ProgressBar from "./ProgressBarAnimated";
 import workoutDurationSec from "../../resources/workoutDurationSec";
-import workouts from "../../resources/workouts";
+import WorkoutRoutine from "./workoutRoutine";
 
 const nextTimer = { work: "break", break: "work" };
 
-class SampleTimer extends React.Component {
+class WorkoutRoutinePlayer extends React.Component {
 	constructor(props) {
 		super(props);
 
-		// get a list of the of the workouts that can be used in this day's workout
-		const availableWorkouts = workouts.filter(
-			(workout) =>
-				workout.level === this.props.desiredDifficulty && // must be the same level as the user wants
-				workout.type === this.props.weeksWorkouts[0] // must be in the pool of the day's workouts
+		const workoutRoutineObj = new WorkoutRoutine(
+			this.props.desiredWorkoutDuration, // in minutes
+			this.props.weeksWorkouts[0], // the workout type
+			this.props.desiredDifficulty
 		);
 
-		// shuffle the workouts to get a random set
-		const shuffledWorkouts = shuffle(availableWorkouts);
-
-		// TODO make this dynamic to choose number of exercises based on availabilty of time -> slice to 4 / 6
-		const todaysWorkouts = shuffledWorkouts.slice(0, 4);
-
-		// make an array of the exact workout sequence that the user will undergo
-		let workoutSequence = []; // TODO add stretch based on time
-
-		todaysWorkouts.map((workout) => {
-			// TODO change this to be 4 if user has 60 mins to workout
-			for (let i = 0; i < 3; i++) {
-				workoutSequence.push(workout);
-			}
-		});
-
 		this.state = {
+			workoutRoutine: workoutRoutineObj.workoutRoutine, // an array of the exact routine to be followed
 			// in seconds
-			workTime: workoutDurationSec.NOT_HIIT,
-			breakTime: workoutDurationSec.NOT_HIIT,
+			workTime: workoutRoutineObj.getWorkoutTimeSec(),
+			breakTime: workoutRoutineObj.getBreakTimeSec(),
 			// in ms
 			timeRemaining: workoutDurationSec.NOT_HIIT * 1000, // we start with all the work time
 			isRunning: false,
@@ -148,6 +123,7 @@ class SampleTimer extends React.Component {
 					style={styles.center}
 					timeRemaining={this.state.timeRemaining}
 					onToggleTimer={this.toggleTimer}
+					size="big"
 				/>
 				<ProgressBar
 					timeRemaining={this.state.timeRemaining}
@@ -171,7 +147,7 @@ const mapStateToProps = (state) => ({
 	desiredDifficulty: state.desiredDifficulty,
 });
 
-export default connect(mapStateToProps)(SampleTimer);
+export default connect(mapStateToProps)(WorkoutRoutinePlayer);
 
 const styles = StyleSheet.create({
 	container: {
@@ -191,24 +167,3 @@ const styles = StyleSheet.create({
 		fontSize: 48,
 	},
 });
-
-// function that returns the passed in array in random order
-function shuffle(array) {
-	var currentIndex = array.length,
-		temporaryValue,
-		randomIndex;
-
-	// While there remain elements to shuffle...
-	while (0 !== currentIndex) {
-		// Pick a remaining element...
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex -= 1;
-
-		// And swap it with the current element.
-		temporaryValue = array[currentIndex];
-		array[currentIndex] = array[randomIndex];
-		array[randomIndex] = temporaryValue;
-	}
-
-	return array;
-}
