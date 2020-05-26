@@ -6,7 +6,7 @@ It has a start button at the bottom to start today's workout.
 */
 
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button } from "react-native";
 import { connect } from "react-redux";
 
 import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
@@ -25,8 +25,13 @@ const daysOfWeek = [
 	"Saturday",
 ];
 
-const nameOfFutureDay = (daysFromNow) =>
-	daysOfWeek[new Date().setDate(new Date().getDate() + 1).getDay()];
+// returns the name of the day of the week that is daysFromNow in the future
+const nameOfFutureDay = (daysFromNow) => {
+	const today = new Date();
+	const tomorrow = new Date(today);
+	tomorrow.setDate(tomorrow.getDate() + daysFromNow);
+	return daysOfWeek[tomorrow.getDay()]; // getDay() returns a number between 0 (Sunday) and 6 (Saturday)
+};
 
 // the title of the day
 const dayName = [
