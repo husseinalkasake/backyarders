@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 function TodaysWorkout({ route, navigation }) {
-	const { desiredDuration } = route.params;
+	const { desiredWorkoutDuration } = route.params;
 
 	const title = "Today's Workout";
 	navigation.setOptions({
@@ -25,7 +25,9 @@ function TodaysWorkout({ route, navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<WorkoutRoutinePlayer desiredDuration={desiredDuration} />
+			<WorkoutRoutinePlayer
+				desiredWorkoutDuration={desiredWorkoutDuration}
+			/>
 		</View>
 	);
 }
