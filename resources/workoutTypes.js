@@ -1,6 +1,6 @@
-const absLevels = {
-	0: "Easy",
-	1: "Hard",
+export const absLevels = {
+	EASY: "Easy",
+	HARD: "Hard",
 };
 
 const workoutTypes = {

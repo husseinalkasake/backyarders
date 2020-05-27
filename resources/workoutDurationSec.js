@@ -1,5 +1,7 @@
 // the workout times in seconds
 const workoutDurationSec = {
+	ABS_WORK: 60,
+	ABS_RSET: 30,
 	NOT_HIIT: 60,
 	HIIT_BEGINNER_WORK: 30,
 	HIIT_BEGINNER_REST: 30,

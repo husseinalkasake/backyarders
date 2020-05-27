@@ -3,6 +3,7 @@ This is the landing page of the custom workout plan.
 It shows the workouts planned up for the next senven days.
 It lets the uesr choose between 30, 45 and 60 mins as a workout duration.
 It has a start button at the bottom to start today's workout.
+It has an optional Abs button (user can do abs at any given day)
 */
 
 import React, { useState } from "react";
@@ -13,7 +14,10 @@ import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin
 
 import NextButton from "../questionnaire/QuestionnaireNextButton";
 
+import DAILY_WORKOUT_ROUTE from "../../navigation/routes";
+
 import { colors, CustomStyleSheet } from "../../styles";
+import workoutTypes from "../../resources/workoutTypes";
 
 const daysOfWeek = [
 	"Sunday",
@@ -63,33 +67,50 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 				</Text>
 			))}
 
-			<View style={styles.options}>
-				{desiredWorkoutDurationMin.map((duration, i) => {
-					<Button
-						bordered
-						style={[
-							styles.optionButton,
-							desiredWorkoutDuration === duration &&
-								styles.optionButtonSelected,
-						]}
-						onPress={() => setDesiredWorkoutDuration(duration)}>
-						<Text
-							style={[
-								styles.optionButtonText,
-								desiredWorkoutDuration === duration &&
-									styles.optionButtonSelectedText,
-							]}>
-							{duration} Minutes
-						</Text>
-					</Button>;
-				})}
-			</View>
+			{weeksWorkouts[0] == workoutTypes.BREAK ? (
+				<Text>Rest well today!</Text>
+			) : (
+				<View>
+					<View style={styles.options}>
+						{desiredWorkoutDurationMin.map((duration, i) => {
+							<Button
+								key={`${duration}_mins_btn`}
+								bordered
+								style={[
+									styles.optionButton,
+									desiredWorkoutDuration === duration &&
+										styles.optionButtonSelected,
+								]}
+								onPress={() =>
+									setDesiredWorkoutDuration(duration)
+								}>
+								<Text
+									style={[
+										styles.optionButtonText,
+										desiredWorkoutDuration === duration &&
+											styles.optionButtonSelectedText,
+									]}>
+									{duration} Minutes
+								</Text>
+							</Button>;
+						})}
+					</View>
+					<NextButton
+						text="Start Today's Workout"
+						goToNextScreen={() =>
+							navigation.navigate(DAILY_WORKOUT_ROUTE, {
+								desiredWorkoutDuration,
+							})
+						}
+					/>
+				</View>
+			)}
 
 			<NextButton
-				text="Start Today's Workout"
+				text="Let's Do Some Abs"
 				goToNextScreen={() =>
-					navigation.navigate("TodaysWorkout", {
-						desiredWorkoutDuration,
+					navigation.navigate(DAILY_WORKOUT_ROUTE, {
+						desiredWorkoutDuration: desiredWorkoutDurationMin.ABS,
 					})
 				}
 			/>

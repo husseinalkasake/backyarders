@@ -29,20 +29,24 @@ import desiredDifficulty from "../../resources/desiredDifficulty";
 import workouts from "../../resources/workouts";
 import workoutDurationSec from "../../resources/workoutDurationSec";
 import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
-import workoutTypes from "../../resources/workoutTypes";
+import workoutTypes, { absLevels } from "../../resources/workoutTypes";
 
 class WorkoutRoutine {
 	constructor(
-		desiredWorkoutDurationMin,
+		desiredWorkoutDurationInMin,
 		workoutType,
 		desiredDifficultyLevel
 	) {
-		this.totalWorkoutTimeMin = desiredWorkoutDurationMin;
+		this.isAbs =
+			desiredWorkoutDurationInMin == desiredWorkoutDurationMin.ABS;
+		this.totalWorkoutTimeMin = desiredWorkoutDurationInMin;
 		this.workoutType = workoutType;
 		this.desiredDifficulty = desiredDifficultyLevel;
 		this.workoutRoutine = []; // initialize it to an empty array then fill it with WorkoutVideo objects
 		this.numberOfExercises = 0; // the number of exercises (includes the reps, cool down and warmp up)
-		this.genrateWorkoutRoutine(); // make the routine
+
+		// make the routine
+		this.isAbs ? this.generateAbsRoutine() : this.genrateWorkoutRoutine();
 	}
 
 	// returns true if workout starts with a stretch
@@ -70,9 +74,11 @@ class WorkoutRoutine {
 			: 3;
 	}
 
-	// returns the total time required
+	// returns the total routine time
 	getTotalWorkoutTimeInSecs() {
-		return this.totalWorkoutTimeMin * 60;
+		let totalTime = 0;
+		this.workoutRoutine.map((workout) => (totalTime += workout.duration));
+		return totalTime;
 	}
 
 	getWorkoutTimeSec() {
@@ -105,6 +111,59 @@ class WorkoutRoutine {
 		}
 	}
 
+	generateAbsRoutine() {
+		// beginners take from the easy abs pool, everyone else from the hard one
+		const workoutLevel =
+			this.desiredDifficulty == desiredDifficulty.BEGINNER
+				? absLevels.EASY
+				: absLevels.HARD;
+		// get a list of the of the workouts that can be used in this day's workout
+		const availableWorkouts = workouts.filter(
+			(workout) =>
+				workout.level === workoutLevel && // must be the same level as the user wants
+				workout.type === workoutTypes.ABS // must be in the pool of the day's workouts
+		);
+		// shuffle the workouts to get a random set
+		const shuffledWorkouts = shuffle(availableWorkouts);
+
+		// number of different exercises to be performed (6 for beginner/intermediate, 8 for pro, challenge)
+		const sets =
+			this.desiredDifficulty == desiredDifficulty.BEGINNER ||
+			this.desiredDifficulty == desiredDifficulty.INTERMEDIATE
+				? 6
+				: 8;
+
+		// take a 30 seconds break after doing half the exercises
+		const breakIndex = sets / 2;
+
+		// choose number of exercises based on desiredDifficulty -> slice to 6 / 8
+		const firstHalf = shuffledWorkouts.slice(0, breakIndex - 1);
+		const secondHalf = shuffledWorkouts.slice(breakIndex, sets - 1);
+
+		// add the first half of exercises
+		firstHalf.map((workout) =>
+			this.workoutRoutine.push({
+				...workout,
+				duration: workoutDurationSec.ABS_WORK,
+			})
+		);
+
+		// add a break at the half way mark
+		this.workoutRoutine.push({
+			name: "Break",
+			type: workoutTypes.BREAK,
+			duration: workoutDurationSec.ABS_RSET,
+		});
+
+		// add the second half of exercises
+		secondHalf.map((workout) =>
+			this.workoutRoutine.push({
+				...workout,
+				duration: workoutDurationSec.ABS_WORK,
+			})
+		);
+	}
+
 	genrateWorkoutRoutine() {
 		// get a list of the of the workouts that can be used in this day's workout
 		const availableWorkouts = workouts.filter(
@@ -131,17 +190,17 @@ class WorkoutRoutine {
 		// add a stretch if time permits
 		switch (this.totalWorkoutTimeMin) {
 			case desiredWorkoutDurationMin.FORTY_FIVE_MINUTES:
-				const stretchVideo = new WorkoutVideo({
+				const stretchVideo = {
 					...stretch,
 					duration: 3 * 60, // warmp up for 3 mins
-				}); // TODO add mins
+				};
 				this.workoutRoutine.push(stretchVideo);
 				break;
 			case desiredWorkoutDurationMin.SIXTY_MINUTES:
-				const stretchVideo = new WorkoutVideo({
+				const stretchVideo = {
 					...stretch,
 					duration: 4 * 60, // warm up for 4 mins
-				});
+				};
 				this.workoutRoutine.push(stretchVideo);
 				break;
 			default:

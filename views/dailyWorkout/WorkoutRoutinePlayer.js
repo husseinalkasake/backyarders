@@ -11,6 +11,8 @@ import { Timer, vibrate } from "./utils";
 import ProgressBar from "./ProgressBarAnimated";
 import workoutDurationSec from "../../resources/workoutDurationSec";
 import WorkoutRoutine from "./workoutRoutine";
+import workoutTypes from "../../resources/workoutTypes";
+import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
 
 const nextTimer = { work: "break", break: "work" };
 
@@ -20,7 +22,9 @@ class WorkoutRoutinePlayer extends React.Component {
 
 		const workoutRoutineObj = new WorkoutRoutine(
 			this.props.desiredWorkoutDuration, // in minutes
-			this.props.weeksWorkouts[0], // the workout type
+			this.props.desiredWorkoutDuration == desiredWorkoutDurationMin.ABS
+				? workoutTypes.ABS
+				: this.props.weeksWorkouts[0], // the workout type
 			this.props.desiredDifficulty
 		);
 
