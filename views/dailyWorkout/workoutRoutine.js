@@ -187,17 +187,19 @@ class WorkoutRoutine {
 
 		const reps = this.getNumberOfWorkoutRepitions();
 
+		let stretchVideo = {};
+
 		// add a stretch if time permits
 		switch (this.totalWorkoutTimeMin) {
 			case desiredWorkoutDurationMin.FORTY_FIVE_MINUTES:
-				const stretchVideo = {
+				stretchVideo = {
 					...stretch,
 					duration: 3 * 60, // warmp up for 3 mins
 				};
 				this.workoutRoutine.push(stretchVideo);
 				break;
 			case desiredWorkoutDurationMin.SIXTY_MINUTES:
-				const stretchVideo = {
+				stretchVideo = {
 					...stretch,
 					duration: 4 * 60, // warm up for 4 mins
 				};

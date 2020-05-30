@@ -7,7 +7,7 @@ It has an optional Abs button (user can do abs at any given day)
 */
 
 import React, { useState } from "react";
-import { View, Text, Button } from "react-native";
+import { ScrollView, View, Text, Button, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 
 import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
@@ -58,63 +58,78 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 	});
 
 	return (
-		<View style={styles.container}>
-			<Text>This Week's Workouts</Text>
-			{weeksWorkouts.map((type, i) => (
-				<Text key={`workout_${i}`}>
-					<Text>{dayName[i]}</Text>
-					<Text>{type}</Text>
-				</Text>
-			))}
-
-			{weeksWorkouts[0] == workoutTypes.BREAK ? (
-				<Text>Rest well today!</Text>
-			) : (
-				<View>
-					<View style={styles.options}>
-						{desiredWorkoutDurationMin.map((duration, i) => {
-							<Button
-								key={`${duration}_mins_btn`}
-								bordered
-								style={[
-									styles.optionButton,
-									desiredWorkoutDuration === duration &&
-										styles.optionButtonSelected,
-								]}
-								onPress={() =>
-									setDesiredWorkoutDuration(duration)
-								}>
-								<Text
-									style={[
-										styles.optionButtonText,
-										desiredWorkoutDuration === duration &&
-											styles.optionButtonSelectedText,
-									]}>
-									{duration} Minutes
-								</Text>
-							</Button>;
-						})}
+		<ScrollView>
+			<View style={styles.container}>
+				{weeksWorkouts.map((type, i) => (
+					<View style={styles.options} key={`workout_${i}`}>
+						<View style={styles.dayOfWeek}>
+							<Text style={styles.dayOfWeektext}>
+								{dayName[i]}
+							</Text>
+						</View>
+						<Text style={styles.workoutName}>{type}</Text>
 					</View>
-					<NextButton
-						text="Start Today's Workout"
-						goToNextScreen={() =>
-							navigation.navigate(DAILY_WORKOUT_ROUTE, {
-								desiredWorkoutDuration,
-							})
-						}
-					/>
-				</View>
-			)}
+				))}
 
-			<NextButton
-				text="Let's Do Some Abs"
-				goToNextScreen={() =>
-					navigation.navigate(DAILY_WORKOUT_ROUTE, {
-						desiredWorkoutDuration: desiredWorkoutDurationMin.ABS,
-					})
-				}
-			/>
-		</View>
+				{weeksWorkouts[0] == workoutTypes.BREAK ? (
+					<Text>Rest well today!</Text>
+				) : (
+					<View>
+						<View style={styles.options}>
+							{Object.values(desiredWorkoutDurationMin)
+								.filter((duration) => duration >= 30)
+								.map((duration) => (
+									<TouchableOpacity
+										key={`${duration}_btn`}
+										style={[
+											styles.optionButton,
+											desiredWorkoutDuration ===
+												duration &&
+												styles.optionButtonSelected,
+										]}
+										onPress={() =>
+											setDesiredWorkoutDuration(duration)
+										}>
+										<Text
+											style={[
+												styles.optionButtonText,
+												desiredWorkoutDuration ===
+													duration &&
+													styles.optionButtonSelectedText,
+											]}>
+											{duration} Minutes
+										</Text>
+									</TouchableOpacity>
+								))}
+						</View>
+						<TouchableOpacity
+							style={styles.startWorkoutButton}
+							onPress={() =>
+								navigation.navigate(DAILY_WORKOUT_ROUTE, {
+									desiredWorkoutDuration,
+								})
+							}>
+							<Text style={styles.startWorkoutButtonText}>
+								Start Today's Workout
+							</Text>
+						</TouchableOpacity>
+					</View>
+				)}
+
+				<TouchableOpacity
+					style={styles.startWorkoutButton}
+					onPress={() =>
+						navigation.navigate(DAILY_WORKOUT_ROUTE, {
+							desiredWorkoutDuration:
+								desiredWorkoutDurationMin.ABS,
+						})
+					}>
+					<Text style={styles.startWorkoutButtonText}>
+						Let's Do Some Abs
+					</Text>
+				</TouchableOpacity>
+			</View>
+		</ScrollView>
 	);
 }
 
@@ -124,7 +139,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(WeekWorkouts);
 
-// TODO I don't need most of these styles
 // TODO maybe put these styles in their own file
 const styles = CustomStyleSheet({
 	container: {
@@ -133,22 +147,36 @@ const styles = CustomStyleSheet({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	input: {
-		position: "absolute",
-		right: 0,
-		width: "30%",
-		maxWidth: 240,
-		borderColor: "black",
-		borderRadius: 15,
+	dayOfWeek: {
+		margin: 10,
+		width: 80,
+		height: 40,
+		backgroundColor: colors.MAIN_COLOR,
+		borderRadius: 25,
+	},
+	dayOfWeektext: {
+		color: colors.BACKGROUND_COLOR,
+		fontSize: 12,
+		alignSelf: "center",
+		paddingTop: 12,
+	},
+	workoutName: {
+		paddingTop: 20,
+		paddingLeft: 20,
 	},
 	optionButton: {
-		marginLeft: 12,
+		margin: 10,
+		width: 100,
+		height: 50,
 		borderColor: colors.MAIN_COLOR,
 		borderRadius: 15,
+		borderWidth: 1,
 	},
 	optionButtonText: {
 		color: colors.MAIN_COLOR,
 		fontSize: 12,
+		alignSelf: "center",
+		paddingTop: 15,
 	},
 	optionButtonSelected: {
 		backgroundColor: colors.MAIN_COLOR,
@@ -156,20 +184,20 @@ const styles = CustomStyleSheet({
 	optionButtonSelectedText: {
 		color: colors.BACKGROUND_COLOR,
 	},
-	optionButtonSelectedDisabled: {
-		backgroundColor: "gray",
-	},
-	personalProfileField: {
-		flexDirection: "row",
-		paddingTop: 60,
-		marginHorizontal: 24,
-	},
-	questionnaireField: {
-		flexDirection: "row",
-		paddingTop: "24%",
-		marginHorizontal: "10%",
-	},
 	options: {
 		flexDirection: "row",
+		alignItems: "baseline",
+	},
+	startWorkoutButton: {
+		margin: 10,
+		padding: 15,
+		backgroundColor: colors.NEXT_BUTTON_COLOR,
+		borderColor: colors.NEXT_BUTTON_COLOR,
+		alignSelf: "center",
+		borderRadius: 15,
+	},
+	startWorkoutButtonText: {
+		color: "white",
+		fontSize: 18,
 	},
 });
