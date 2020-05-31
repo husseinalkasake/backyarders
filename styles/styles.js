@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		left: "28%",
 	},
+	bold: {
+		fontWeight: "bold",
+	},
 });
 
 export default styles;
