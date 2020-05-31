@@ -1,26 +1,40 @@
+/*
+TODO make a new time for every item in the workoutRoutine array
+*/
+
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { connect } from "react-redux";
 
 import { Countdown, TimeInput, TimerToggleButton } from "./TimerComponents";
 import { Timer, vibrate } from "./utils";
 import ProgressBar from "./ProgressBarAnimated";
+import workoutDurationSec from "../../resources/workoutDurationSec";
+import WorkoutRoutine from "./workoutRoutine";
+import workoutTypes from "../../resources/workoutTypes";
+import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
 
-const DEFAULT_WORK_MINS = 0.1;
-const DEFAULT_BREAK_MINS = 0.1;
-
-const minToSec = (mins) => mins * 60;
 const nextTimer = { work: "break", break: "work" };
 
-export default class SampleTimer extends React.Component {
+class WorkoutRoutinePlayer extends React.Component {
 	constructor(props) {
 		super(props);
 
+		const workoutRoutineObj = new WorkoutRoutine(
+			this.props.desiredWorkoutDuration, // in minutes
+			this.props.desiredWorkoutDuration == desiredWorkoutDurationMin.ABS
+				? workoutTypes.ABS
+				: this.props.weeksWorkouts[0], // the workout type
+			this.props.desiredDifficulty
+		);
+
 		this.state = {
+			workoutRoutine: workoutRoutineObj.workoutRoutine, // an array of the exact routine to be followed
 			// in seconds
-			workTime: minToSec(DEFAULT_WORK_MINS),
-			breakTime: minToSec(DEFAULT_BREAK_MINS),
+			workTime: workoutRoutineObj.getWorkoutTimeSec(),
+			breakTime: workoutRoutineObj.getBreakTimeSec(),
 			// in ms
-			timeRemaining: minToSec(DEFAULT_WORK_MINS) * 1000,
+			timeRemaining: workoutDurationSec.NOT_HIIT * 1000, // we start with all the work time
 			isRunning: false,
 			activeTimer: "work",
 		};
@@ -104,7 +118,6 @@ export default class SampleTimer extends React.Component {
 	}
 
 	render() {
-		if (Math.round(Math.random())) this.block();
 		return (
 			<View style={styles.container}>
 				<Text style={[styles.title, styles.center]}>
@@ -114,6 +127,7 @@ export default class SampleTimer extends React.Component {
 					style={styles.center}
 					timeRemaining={this.state.timeRemaining}
 					onToggleTimer={this.toggleTimer}
+					size="big"
 				/>
 				<ProgressBar
 					timeRemaining={this.state.timeRemaining}
@@ -127,20 +141,17 @@ export default class SampleTimer extends React.Component {
 					/>
 					<Button title="Reset" onPress={this.resetTimer} />
 				</View>
-				<TimeInput
-					title="WORK TIME:"
-					onChange={this.updateTime("work")}
-					value={this.state.workTime}
-				/>
-				<TimeInput
-					title="BREAK TIME:"
-					onChange={this.updateTime("break")}
-					value={this.state.breakTime}
-				/>
 			</View>
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	weeksWorkouts: state.weeksWorkouts,
+	desiredDifficulty: state.desiredDifficulty,
+});
+
+export default connect(mapStateToProps)(WorkoutRoutinePlayer);
 
 const styles = StyleSheet.create({
 	container: {

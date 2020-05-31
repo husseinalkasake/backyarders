@@ -1,10 +1,10 @@
 /*
-This page plays the workouts dynamically.
+This screen is a middle ware compoenent function to render the WorkoutRoutinePlayer.
 */
 
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
-import SampleTimer from "./SampleTimer";
+import { View, StyleSheet } from "react-native";
+import WorkoutRoutinePlayer from "./WorkoutRoutinePlayer";
 
 const styles = StyleSheet.create({
 	container: {
@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
 	},
 });
 
-function TodaysWorkout({ navigation }) {
+function TodaysWorkout({ route, navigation }) {
+	const { desiredWorkoutDuration } = route.params;
+
 	const title = "Today's Workout";
 	navigation.setOptions({
 		title,
@@ -23,7 +25,9 @@ function TodaysWorkout({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<SampleTimer />
+			<WorkoutRoutinePlayer
+				desiredWorkoutDuration={desiredWorkoutDuration}
+			/>
 		</View>
 	);
 }
