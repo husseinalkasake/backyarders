@@ -37,6 +37,7 @@ class WorkoutRoutine {
 		workoutType,
 		desiredDifficultyLevel
 	) {
+		console.log("I got called to construct a workout routine");
 		this.isAbs =
 			desiredWorkoutDurationInMin == desiredWorkoutDurationMin.ABS;
 		this.totalWorkoutTimeMin = desiredWorkoutDurationInMin;
@@ -56,6 +57,11 @@ class WorkoutRoutine {
 				desiredWorkoutDurationMin.FORTY_FIVE_MINUTES ||
 			this.totalWorkoutTimeMin === desiredWorkoutDurationMin.SIXTY_MINUTES
 		);
+	}
+
+	// return the number of items in the workoutRoutine array
+	getTotalNumberOfItems() {
+		return this.workoutRoutine.length;
 	}
 
 	// 5 for 30 mins, 7 for 45 and 60 mins
