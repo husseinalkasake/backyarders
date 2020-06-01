@@ -20,6 +20,7 @@ function NutritionPlate({
 	sex: currentSex,
 	activityLevel: currentActivityLevel,
 }) {
+	// TODO: MOVE THIS SOMEWHERE ELSE WHEN ITS USED ELSEWHERE
 	const getCalorieIntake = () => {
 		const weightInPounds = weight * 2.20462;
 		const heightInInches = height * 0.393701;
@@ -60,7 +61,7 @@ function NutritionPlate({
 	});
 	return (
 		<View style={styles.container}>
-			<Text style={[styles.title, styles.bold]}>Today's meal plan</Text>
+			<Text style={[styles.title, styles.bold]}>Your Meal Plan</Text>
 			<PieChart
 				chart_wh={200}
 				series={[100, 50, 50]}
@@ -71,7 +72,7 @@ function NutritionPlate({
 				]}
 				doughnut={true}
 				coverRadius={0.45}
-				coverFill={"#FFF"}
+				coverFill={"white"}
 				style={styles.pieChart}
 			/>
 			<View style={styles.optionsContainer}>
@@ -84,7 +85,7 @@ function NutritionPlate({
 					{optionButton(options.FATS)}
 				</View>
 			</View>
-			<Text style={styles.subtitle}>Today's Calorie Intake</Text>
+			<Text style={styles.subtitle}>Daily Calorie Intake</Text>
 			<Text style={[styles.title, styles.bold]}>
 				{`${getCalorieIntake()} kcal`}
 			</Text>
@@ -95,7 +96,7 @@ function NutritionPlate({
 const options = {
 	PROTEIN: {
 		text: "Protein",
-		color: "#f94f4f",
+		color: "#F94F4F",
 	},
 	CARBS: {
 		text: "Carbs",
@@ -114,7 +115,7 @@ const options = {
 const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
+		backgroundColor: "white",
 		alignItems: "center",
 		justifyContent: "center",
 	},

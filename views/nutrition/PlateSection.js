@@ -56,7 +56,7 @@ const PlateSection = ({ route, navigation }) => {
 const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
-		backgroundColor: "#fff",
+		backgroundColor: "white",
 	},
 	foodOptionText: {
 		fontSize: 20,
