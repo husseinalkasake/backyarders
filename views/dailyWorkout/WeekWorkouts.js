@@ -12,10 +12,6 @@ import { connect } from "react-redux";
 
 import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
 
-import NextButton from "../questionnaire/QuestionnaireNextButton";
-
-import DAILY_WORKOUT_ROUTE from "../../navigation/routes";
-
 import { colors, CustomStyleSheet } from "../../styles";
 import workoutTypes from "../../resources/workoutTypes";
 
@@ -105,7 +101,7 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 						<TouchableOpacity
 							style={styles.startWorkoutButton}
 							onPress={() =>
-								navigation.navigate(DAILY_WORKOUT_ROUTE, {
+								navigation.navigate("TodaysWorkout", {
 									desiredWorkoutDuration,
 								})
 							}>
@@ -119,7 +115,7 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 				<TouchableOpacity
 					style={styles.startWorkoutButton}
 					onPress={() =>
-						navigation.navigate(DAILY_WORKOUT_ROUTE, {
+						navigation.navigate("TodaysWorkout", {
 							desiredWorkoutDuration:
 								desiredWorkoutDurationMin.ABS,
 						})
