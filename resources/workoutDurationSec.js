@@ -2,7 +2,7 @@
 const workoutDurationSec = {
 	ABS_WORK: 60,
 	ABS_RSET: 30,
-	NOT_HIIT: 60,
+	NOT_HIIT: 5, // TODO change to 60
 	HIIT_BEGINNER_WORK: 30,
 	HIIT_BEGINNER_REST: 30,
 	HIIT_INTERMEDIATE_WORK: 40,

@@ -37,14 +37,12 @@ class WorkoutRoutine {
 		workoutType,
 		desiredDifficultyLevel
 	) {
-		console.log("I got called to construct a workout routine");
 		this.isAbs =
 			desiredWorkoutDurationInMin == desiredWorkoutDurationMin.ABS;
 		this.totalWorkoutTimeMin = desiredWorkoutDurationInMin;
 		this.workoutType = workoutType;
 		this.desiredDifficulty = desiredDifficultyLevel;
 		this.workoutRoutine = []; // initialize it to an empty array then fill it with WorkoutVideo objects
-		this.numberOfExercises = 0; // the number of exercises (includes the reps, cool down and warmp up)
 
 		// make the routine
 		this.isAbs ? this.generateAbsRoutine() : this.genrateWorkoutRoutine();
@@ -88,7 +86,7 @@ class WorkoutRoutine {
 	}
 
 	getWorkoutTimeSec() {
-		if (this.workoutType == workoutTypes.HIIT)
+		if (this.workoutType !== workoutTypes.HIIT)
 			return workoutDurationSec.NOT_HIIT;
 		switch (this.desiredDifficulty) {
 			case desiredDifficulty.BEGINNER:
@@ -103,7 +101,7 @@ class WorkoutRoutine {
 	}
 
 	getBreakTimeSec() {
-		if (this.workoutType == workoutTypes.HIIT)
+		if (this.workoutType !== workoutTypes.HIIT)
 			return workoutDurationSec.NOT_HIIT;
 		switch (this.desiredDifficulty) {
 			case desiredDifficulty.BEGINNER:

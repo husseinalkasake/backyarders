@@ -18,21 +18,19 @@ class WorkoutRoutinePlayer extends React.Component {
 	constructor(props) {
 		super(props);
 
-		// const workoutRoutineObj = new WorkoutRoutine(
-		// 	this.props.desiredWorkoutDuration, // in minutes
-		// 	this.props.desiredWorkoutDuration == desiredWorkoutDurationMin.ABS
-		// 		? workoutTypes.ABS
-		// 		: this.props.weeksWorkouts[0], // the workout type
-		// 	this.props.desiredDifficulty
-		// );
-
-		// console.log(workoutRoutineObj);
+		const workoutRoutineObj = new WorkoutRoutine(
+			this.props.desiredWorkoutDuration, // in minutes
+			this.props.desiredWorkoutDuration == desiredWorkoutDurationMin.ABS
+				? workoutTypes.ABS
+				: this.props.weeksWorkouts[0], // the workout type
+			this.props.desiredDifficulty
+		);
 
 		this.state = {
-			// workoutRoutine: workoutRoutineObj.workoutRoutine, // an array of the exact routine to be followed
-			// numberOfWorkoutRoutineIntervals: workoutRoutineObj.getTotalNumberOfItems(),
+			workoutRoutine: workoutRoutineObj.workoutRoutine, // an array of the exact routine to be followed
+			numberOfWorkoutRoutineIntervals: workoutRoutineObj.getTotalNumberOfItems(),
 			currentWorkoutRoutineIndex: 0, // start with the first element of the workout routine
-			timeRemaining: 60, //workoutRoutineObj.workoutRoutine[0].duration * 1000, // start with the first item in the list (in ms)
+			timeRemaining: workoutRoutineObj.workoutRoutine[0].duration * 1000, // start with the first item in the list (in ms)
 			isRunning: false,
 			isOver: false, // indicates end of workout
 		};
@@ -40,17 +38,17 @@ class WorkoutRoutinePlayer extends React.Component {
 
 	// set up the first video of the workout
 	componentDidMount() {
-		// this.timer = new Timer(
-		// 	this.state.timeRemaining,
-		// 	this.updateTimeRemaining,
-		// 	this.handleTimerEnd()
-		// );
-		// this.setState({ isRunning: this.timer.isRunning });
+		this.timer = new Timer(
+			this.state.timeRemaining,
+			this.updateTimeRemaining,
+			this.handleTimerEnd
+		);
+		this.setState({ isRunning: this.timer.isRunning });
 	}
 
 	// once user is ready to leave workout screen, kill an instance of Timer class
 	componentWillUnmount() {
-		//if (this.timer) this.timer.stop();
+		if (this.timer) this.timer.stop();
 	}
 
 	/* LEGACY CODE
@@ -79,11 +77,10 @@ class WorkoutRoutinePlayer extends React.Component {
 	};
 	*/
 
-	/*
 	// resets and pauses timer
-	resetTimerAndStop() {
+	resetTimerAndStop = () => {
 		this.startNewTimer(false); // start a new timer and stop it
-	}
+	};
 
 	updateTimeRemaining = (timeRemaining) => {
 		this.setState({ timeRemaining });
@@ -99,49 +96,56 @@ class WorkoutRoutinePlayer extends React.Component {
 	};
 
 	// once timer ends, vibrate phone and setup next video/break
-	handleTimerEnd() {
+	handleTimerEnd = () => {
 		vibrate();
+		console.log("About to handle timer end");
+		const {
+			currentWorkoutRoutineIndex,
+			numberOfWorkoutRoutineIntervals,
+		} = this.state;
 
 		if (
-			this.state.currentWorkoutRoutineIndex ===
-			this.state.numberOfWorkoutRoutineIntervals + 1
+			currentWorkoutRoutineIndex ===
+			numberOfWorkoutRoutineIntervals + 1
 		) {
 			// handles end of last video
 			this.setState({ isOver: true });
 		} else {
+			console.log(
+				"About to increase the current workout index to: ",
+				currentWorkoutRoutineIndex + 1
+			);
 			// sets up next workout/break
 			this.setState({
-				currentWorkoutRoutineIndex:
-					this.state.currentWorkoutRoutineIndex + 1,
+				currentWorkoutRoutineIndex: currentWorkoutRoutineIndex + 1,
 			});
+			console.log(
+				"updated the new index to: ",
+				this.state.currentWorkoutRoutineIndex
+			);
 			this.startNewTimer(true);
 		}
-	}
+	};
 
 	// set up the timer for the new exercise
-	startNewTimer(shouldPlay) {
+	startNewTimer = (shouldPlay) => {
+		if (this.timer) delete this.timer;
 		const { workoutRoutine, currentWorkoutRoutineIndex } = this.state; // get variables that I will need
 		const newExercise = workoutRoutine[currentWorkoutRoutineIndex]; // get the workout/break object
 		this.setState({ timeRemaining: newExercise.duration * 1000 }); // update time remaining to the duration of the new exercise (in ms)
 		this.timer = new Timer( // create a new timer
 			this.state.timeRemaining,
 			this.updateTimeRemaining,
-			this.handleTimerEnd()
+			this.handleTimerEnd
 		);
 		if (!shouldPlay) this.timer.stop();
 		this.setState({ isRunning: this.timer.isRunning }); // let state know that new timer is running
-	}
+	};
 
 	// TODO currently only using this for progress bar, don't know if i will wanna keep it
 	getTimeTotal = () => {};
-*/
+
 	render() {
-		return (
-			<View>
-				<Text>Hello</Text>
-			</View>
-		);
-		/*
 		if (this.state.isOver) {
 			return (
 				<View>
@@ -152,6 +156,10 @@ class WorkoutRoutinePlayer extends React.Component {
 		} else {
 			const { workoutRoutine, currentWorkoutRoutineIndex } = this.state;
 			const currentExercise = workoutRoutine[currentWorkoutRoutineIndex];
+			console.log(
+				"Reading the current workout index from render: ",
+				currentWorkoutRoutineIndex
+			);
 			return (
 				<View style={styles.container}>
 					{currentExercise.type === "Break" ? (
@@ -168,20 +176,19 @@ class WorkoutRoutinePlayer extends React.Component {
 						</View>
 					) : (
 						<View>
-							<WorkoutVideo
-								source={{
-									uri: `https://gdurl.com${currentExercise.sourceMain}`,
-								}}
-							/>
 							<Countdown
 								style={styles.center}
 								timeRemaining={this.state.timeRemaining}
 								onToggleTimer={this.toggleTimer}
 								size="small"
 							/>
+							<WorkoutVideo
+								source={{
+									uri: `https://gdurl.com${currentExercise.sourceMain}`,
+								}}
+							/>
 						</View>
 					)}
-
 
 					<View style={[styles.buttonGroup, styles.center]}>
 						<TimerToggleButton
@@ -195,7 +202,7 @@ class WorkoutRoutinePlayer extends React.Component {
 					</View>
 				</View>
 			);
-		} */
+		}
 	}
 }
 

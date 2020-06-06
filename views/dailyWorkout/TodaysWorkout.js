@@ -25,10 +25,9 @@ function TodaysWorkout({ route, navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<Text>Hello</Text>
-			{/* <WorkoutRoutinePlayer
+			<WorkoutRoutinePlayer
 				desiredWorkoutDuration={desiredWorkoutDuration}
-			/> */}
+			/>
 		</View>
 	);
 }
