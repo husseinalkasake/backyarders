@@ -51,32 +51,6 @@ class WorkoutRoutinePlayer extends React.Component {
 		if (this.timer) this.timer.stop();
 	}
 
-	/* LEGACY CODE
-	// update the time remaining till current timer ends 
-	updateTime = (target) => (time, shouldStartTimer) => {
-		if (this.state.currentWorkoutRoutineIndex === target) {
-			if (this.timer) this.timer.stop();
-			const timeRemaining = +time * 1000;
-			this.timer = new Timer(
-				timeRemaining,
-				this.updateTimeRemaining,
-				this.handleTimerEnd
-			);
-			if (!shouldStartTimer) this.timer.stop();
-			this.setState({
-				[`${target}Time`]: time,
-				timeRemaining,
-				isRunning: this.timer.isRunning,
-			});
-		} else {
-			this.setState({
-				[`${target}Time`]: time,
-				isRunning: this.timer.isRunning,
-			});
-		}
-	};
-	*/
-
 	// resets and pauses timer
 	resetTimerAndStop = () => {
 		this.startNewTimer(false); // start a new timer and stop it
@@ -109,20 +83,14 @@ class WorkoutRoutinePlayer extends React.Component {
 			numberOfWorkoutRoutineIntervals + 1
 		) {
 			// handles end of last video
+			if (this.timer) delete this.timer; // delete timer so we do not get any memory problems
 			this.setState({ isOver: true });
 		} else {
-			console.log(
-				"About to increase the current workout index to: ",
-				currentWorkoutRoutineIndex + 1
-			);
 			// sets up next workout/break
 			this.setState({
 				currentWorkoutRoutineIndex: currentWorkoutRoutineIndex + 1,
 			});
-			console.log(
-				"updated the new index to: ",
-				this.state.currentWorkoutRoutineIndex
-			);
+
 			this.startNewTimer(true);
 		}
 	};
@@ -156,10 +124,7 @@ class WorkoutRoutinePlayer extends React.Component {
 		} else {
 			const { workoutRoutine, currentWorkoutRoutineIndex } = this.state;
 			const currentExercise = workoutRoutine[currentWorkoutRoutineIndex];
-			console.log(
-				"Reading the current workout index from render: ",
-				currentWorkoutRoutineIndex
-			);
+
 			return (
 				<View style={styles.container}>
 					{currentExercise.type === "Break" ? (
