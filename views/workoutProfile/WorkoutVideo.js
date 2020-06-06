@@ -1,9 +1,18 @@
 /*
 This compoenent accepts a video source and renders the workout video.
+It accepts two props:
+- isEducational: boolean that only plays video twice then pauses it (not required)
+- source 
 */
 
 import React from "react";
-import { TouchableHighlight, View, Dimensions, StyleSheet } from "react-native";
+import {
+	TouchableHighlight,
+	View,
+	Dimensions,
+	StyleSheet,
+	Text,
+} from "react-native";
 import { Video } from "expo-av";
 
 const styles = StyleSheet.create({
@@ -36,7 +45,8 @@ class WorkoutVideo extends React.Component {
 
 	// let component know that video is ready once it loads
 	setupAsync = async () => {
-		await Promise.all([this.loadVideoAsync()]);
+		// FIXME the promise does not behave as expected, so now we never get the "loading ...""
+		// await Promise.all([this.loadVideoAsync()]);
 		this.setState({ isReady: true });
 	};
 
@@ -62,7 +72,17 @@ class WorkoutVideo extends React.Component {
 			// while the video loads
 			return <Text style={styles.loading}>Loading ...</Text>;
 		}
-		const playMode = {};
+
+		// loop the video in workout mode, but only play it once in educational mode
+		const playMode = this.props.isEducational
+			? {
+					onPlaybackStatusUpdate: (status) => {
+						if (status.didJustFinish) {
+							this.resetAsync();
+						}
+					},
+			  }
+			: { isLooping: true };
 
 		return (
 			<View>
@@ -84,12 +104,13 @@ class WorkoutVideo extends React.Component {
 							ref={(c) => {
 								this.video = c;
 							}}
+							{...playMode}
 							// isLooping // decide between this and the resetAsync below
-							onPlaybackStatusUpdate={(status) => {
-								if (status.didJustFinish) {
-									this.resetAsync();
-								}
-							}}
+							// onPlaybackStatusUpdate={(status) => {
+							// 	if (status.didJustFinish) {
+							// 		this.resetAsync();
+							// 	}
+							// }}
 							isMuted // do not play the sound of the videos
 						/>
 					</View>

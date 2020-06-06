@@ -1,15 +1,21 @@
 /*
-TODO make a new time for every item in the workoutRoutine array
+This is the main compoenent of the app.
+It generates a workout based on three parameters:
+- desiredWorkoutDuration
+- desiredDifficulty
+- workoutType
+
+It then displays the videos and breaks till the workout is over.
 */
 
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 
-import { Countdown, TimeInput, TimerToggleButton } from "./TimerComponents";
+import { Countdown, TimerToggleButton } from "./TimerComponents";
 import { Timer, vibrate } from "./utils";
 import WorkoutVideo from "../workoutProfile/WorkoutVideo";
-import ProgressBar from "./ProgressBarAnimated";
+// import ProgressBar from "./ProgressBarAnimated";
 import WorkoutRoutine from "./workoutRoutine";
 import workoutTypes from "../../resources/workoutTypes";
 import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
@@ -72,7 +78,6 @@ class WorkoutRoutinePlayer extends React.Component {
 	// once timer ends, vibrate phone and setup next video/break
 	handleTimerEnd = () => {
 		vibrate();
-		console.log("About to handle timer end");
 		const {
 			currentWorkoutRoutineIndex,
 			numberOfWorkoutRoutineIntervals,
