@@ -67,7 +67,7 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 					</View>
 				))}
 
-				{weeksWorkouts[0] == workoutTypes.BREAK ? (
+				{weeksWorkouts[0] === workoutTypes.BREAK ? (
 					<Text>Rest well today!</Text>
 				) : (
 					<View>

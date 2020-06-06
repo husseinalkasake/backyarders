@@ -20,7 +20,7 @@ class WorkoutRoutinePlayer extends React.Component {
 
 		const workoutRoutineObj = new WorkoutRoutine(
 			this.props.desiredWorkoutDuration, // in minutes
-			this.props.desiredWorkoutDuration == desiredWorkoutDurationMin.ABS
+			this.props.desiredWorkoutDuration === desiredWorkoutDurationMin.ABS
 				? workoutTypes.ABS
 				: this.props.weeksWorkouts[0], // the workout type
 			this.props.desiredDifficulty

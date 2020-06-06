@@ -38,7 +38,7 @@ class WorkoutRoutine {
 		desiredDifficultyLevel
 	) {
 		this.isAbs =
-			desiredWorkoutDurationInMin == desiredWorkoutDurationMin.ABS;
+			desiredWorkoutDurationInMin === desiredWorkoutDurationMin.ABS;
 		this.totalWorkoutTimeMin = desiredWorkoutDurationInMin;
 		this.workoutType = workoutType;
 		this.desiredDifficulty = desiredDifficultyLevel;
@@ -118,7 +118,7 @@ class WorkoutRoutine {
 	generateAbsRoutine() {
 		// beginners take from the easy abs pool, everyone else from the hard one
 		const workoutLevel =
-			this.desiredDifficulty == desiredDifficulty.BEGINNER
+			this.desiredDifficulty === desiredDifficulty.BEGINNER
 				? absLevels.EASY
 				: absLevels.HARD;
 		// get a list of the of the workouts that can be used in this day's workout
@@ -132,8 +132,8 @@ class WorkoutRoutine {
 
 		// number of different exercises to be performed (6 for beginner/intermediate, 8 for pro, challenge)
 		const sets =
-			this.desiredDifficulty == desiredDifficulty.BEGINNER ||
-			this.desiredDifficulty == desiredDifficulty.INTERMEDIATE
+			this.desiredDifficulty === desiredDifficulty.BEGINNER ||
+			this.desiredDifficulty === desiredDifficulty.INTERMEDIATE
 				? 6
 				: 8;
 
