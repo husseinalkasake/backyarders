@@ -2,9 +2,18 @@ import React from "react";
 import { Button, Text } from "native-base";
 import { CustomStyleSheet, colors } from "../../styles";
 
-export default function QuestionnaireNextButton({ goToNextScreen, text }) {
+export default function QuestionnaireNextButton({
+	goToNextScreen,
+	text,
+	absolutePosition = true,
+}) {
 	return (
-		<Button style={styles.nextButton} onPress={goToNextScreen}>
+		<Button
+			style={[
+				styles.nextButton,
+				absolutePosition && styles.absolutePosition,
+			]}
+			onPress={goToNextScreen}>
 			<Text style={styles.nextButtonText}>{text || "Next"}</Text>
 		</Button>
 	);
@@ -12,8 +21,6 @@ export default function QuestionnaireNextButton({ goToNextScreen, text }) {
 
 const styles = CustomStyleSheet({
 	nextButton: {
-		position: "absolute",
-		bottom: "15%",
 		backgroundColor: colors.NEXT_BUTTON_COLOR,
 		borderColor: colors.NEXT_BUTTON_COLOR,
 		alignSelf: "center",
@@ -22,5 +29,9 @@ const styles = CustomStyleSheet({
 	nextButtonText: {
 		color: "white",
 		fontSize: 18,
+	},
+	absolutePosition: {
+		position: "absolute",
+		bottom: "15%",
 	},
 });
