@@ -3,8 +3,17 @@ This compoenent accepts a video source and renders the workout video.
 */
 
 import React from "react";
-import { TouchableHighlight, View, Dimensions } from "react-native";
+import { TouchableHighlight, View, Dimensions, StyleSheet } from "react-native";
 import { Video } from "expo-av";
+
+const styles = StyleSheet.create({
+	loading: {
+		fontStyle: "italic",
+	},
+	fullWidth: {
+		width: "100%",
+	},
+});
 
 class WorkoutVideo extends React.Component {
 	constructor(props) {
@@ -15,27 +24,29 @@ class WorkoutVideo extends React.Component {
 		};
 	}
 
-	// loadAssetsAsync = async () => {
-	//   await Asset.loadAsync([
-	//     require("../../assets/workoutEdu/mountain_climbers.mov"),
-	//   ]);
-	// };
+	// loads the video to be played
+	loadVideoAsync = async () => {
+		await this.video.loadAsync(this.props.source);
+	};
 
+	// load the video when component mounts
 	componentDidMount() {
 		this.setupAsync();
 	}
 
+	// let component know that video is ready once it loads
 	setupAsync = async () => {
-		// TODO load the video first
-		// TODO dsiplay "Lading" while video is still loading
+		await Promise.all([this.loadVideoAsync()]);
 		this.setState({ isReady: true });
 	};
 
+	// freezes the video at the first frame
 	resetAsync = async () => {
 		await this.video.stopAsync();
 		await this.video.setPositionAsync(0);
 	};
 
+	// play/pause the video if it is paused/playing
 	playPauseAsync = async () => {
 		if (this.state.isPlaying) {
 			await this.video.pauseAsync();
@@ -47,6 +58,12 @@ class WorkoutVideo extends React.Component {
 	};
 
 	render() {
+		if (!this.state.isReady) {
+			// while the video loads
+			return <Text style={styles.loading}>Loading ...</Text>;
+		}
+		const playMode = {};
+
 		return (
 			<View>
 				<TouchableHighlight
@@ -73,7 +90,7 @@ class WorkoutVideo extends React.Component {
 									this.resetAsync();
 								}
 							}}
-							isMuted
+							isMuted // do not play the sound of the videos
 						/>
 					</View>
 				</TouchableHighlight>
