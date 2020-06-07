@@ -236,7 +236,7 @@ export default WorkoutRoutine;
 
 // function that returns the passed in array in random order
 function shuffle(array) {
-	var currentIndex = array.length,
+	let currentIndex = array.length,
 		temporaryValue,
 		randomIndex;
 
