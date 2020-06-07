@@ -48,6 +48,7 @@ function WorkoutProfile({ route, navigation }) {
 			</Text>
 
 			<WorkoutVideo
+				isEducational={true}
 				source={
 					workout.sourceEdu === NOT_APPLICABLE
 						? { uri: `https://gdurl.com${workout.sourceMain}` }

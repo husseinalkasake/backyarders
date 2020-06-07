@@ -38,12 +38,11 @@ class WorkoutRoutine {
 		desiredDifficultyLevel
 	) {
 		this.isAbs =
-			desiredWorkoutDurationInMin == desiredWorkoutDurationMin.ABS;
+			desiredWorkoutDurationInMin === desiredWorkoutDurationMin.ABS;
 		this.totalWorkoutTimeMin = desiredWorkoutDurationInMin;
 		this.workoutType = workoutType;
 		this.desiredDifficulty = desiredDifficultyLevel;
 		this.workoutRoutine = []; // initialize it to an empty array then fill it with WorkoutVideo objects
-		this.numberOfExercises = 0; // the number of exercises (includes the reps, cool down and warmp up)
 
 		// make the routine
 		this.isAbs ? this.generateAbsRoutine() : this.genrateWorkoutRoutine();
@@ -56,6 +55,11 @@ class WorkoutRoutine {
 				desiredWorkoutDurationMin.FORTY_FIVE_MINUTES ||
 			this.totalWorkoutTimeMin === desiredWorkoutDurationMin.SIXTY_MINUTES
 		);
+	}
+
+	// return the number of items in the workoutRoutine array
+	getTotalNumberOfItems() {
+		return this.workoutRoutine.length;
 	}
 
 	// 5 for 30 mins, 7 for 45 and 60 mins
@@ -82,7 +86,7 @@ class WorkoutRoutine {
 	}
 
 	getWorkoutTimeSec() {
-		if (this.workoutType == workoutTypes.HIIT)
+		if (this.workoutType !== workoutTypes.HIIT)
 			return workoutDurationSec.NOT_HIIT;
 		switch (this.desiredDifficulty) {
 			case desiredDifficulty.BEGINNER:
@@ -97,7 +101,7 @@ class WorkoutRoutine {
 	}
 
 	getBreakTimeSec() {
-		if (this.workoutType == workoutTypes.HIIT)
+		if (this.workoutType !== workoutTypes.HIIT)
 			return workoutDurationSec.NOT_HIIT;
 		switch (this.desiredDifficulty) {
 			case desiredDifficulty.BEGINNER:
@@ -114,7 +118,7 @@ class WorkoutRoutine {
 	generateAbsRoutine() {
 		// beginners take from the easy abs pool, everyone else from the hard one
 		const workoutLevel =
-			this.desiredDifficulty == desiredDifficulty.BEGINNER
+			this.desiredDifficulty === desiredDifficulty.BEGINNER
 				? absLevels.EASY
 				: absLevels.HARD;
 		// get a list of the of the workouts that can be used in this day's workout
@@ -128,8 +132,8 @@ class WorkoutRoutine {
 
 		// number of different exercises to be performed (6 for beginner/intermediate, 8 for pro, challenge)
 		const sets =
-			this.desiredDifficulty == desiredDifficulty.BEGINNER ||
-			this.desiredDifficulty == desiredDifficulty.INTERMEDIATE
+			this.desiredDifficulty === desiredDifficulty.BEGINNER ||
+			this.desiredDifficulty === desiredDifficulty.INTERMEDIATE
 				? 6
 				: 8;
 

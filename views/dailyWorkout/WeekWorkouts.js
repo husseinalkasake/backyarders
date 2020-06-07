@@ -11,42 +11,38 @@ import { ScrollView, View, Text, Button, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 
 import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
-
-import NextButton from "../questionnaire/QuestionnaireNextButton";
-
-import DAILY_WORKOUT_ROUTE from "../../navigation/routes";
+import dayName from "../../resources/daysOfWeek";
 
 import { colors, CustomStyleSheet } from "../../styles";
 import workoutTypes from "../../resources/workoutTypes";
 
-const daysOfWeek = [
-	"Sunday",
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-];
+// const daysOfWeek = [
+// 	"Sunday",
+// 	"Monday",
+// 	"Tuesday",
+// 	"Wednesday",
+// 	"Thursday",
+// 	"Friday",
+// 	"Saturday",
+// ];
 
-// returns the name of the day of the week that is daysFromNow in the future
-const nameOfFutureDay = (daysFromNow) => {
-	const today = new Date();
-	const tomorrow = new Date(today);
-	tomorrow.setDate(tomorrow.getDate() + daysFromNow);
-	return daysOfWeek[tomorrow.getDay()]; // getDay() returns a number between 0 (Sunday) and 6 (Saturday)
-};
+// // returns the name of the day of the week that is daysFromNow in the future
+// const nameOfFutureDay = (daysFromNow) => {
+// 	const futureDay = new Date();
+// 	futureDay.setDate(futureDay.getDate() + daysFromNow);
+// 	return daysOfWeek[futureDay.getDay()]; // getDay() returns a number between 0 (Sunday) and 6 (Saturday)
+// };
 
-// the title of the day
-const dayName = [
-	"Today",
-	"Tomorrow",
-	nameOfFutureDay(2),
-	nameOfFutureDay(3),
-	nameOfFutureDay(4),
-	nameOfFutureDay(5),
-	nameOfFutureDay(6),
-];
+// // the title of the day
+// const dayName = [
+// 	"Today",
+// 	"Tomorrow",
+// 	nameOfFutureDay(2),
+// 	nameOfFutureDay(3),
+// 	nameOfFutureDay(4),
+// 	nameOfFutureDay(5),
+// 	nameOfFutureDay(6),
+// ];
 
 function WeekWorkouts({ navigation, weeksWorkouts }) {
 	const [desiredWorkoutDuration, setDesiredWorkoutDuration] = useState(
@@ -71,7 +67,7 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 					</View>
 				))}
 
-				{weeksWorkouts[0] == workoutTypes.BREAK ? (
+				{weeksWorkouts[0] === workoutTypes.BREAK ? (
 					<Text>Rest well today!</Text>
 				) : (
 					<View>
@@ -105,7 +101,7 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 						<TouchableOpacity
 							style={styles.startWorkoutButton}
 							onPress={() =>
-								navigation.navigate(DAILY_WORKOUT_ROUTE, {
+								navigation.navigate("TodaysWorkout", {
 									desiredWorkoutDuration,
 								})
 							}>
@@ -119,7 +115,7 @@ function WeekWorkouts({ navigation, weeksWorkouts }) {
 				<TouchableOpacity
 					style={styles.startWorkoutButton}
 					onPress={() =>
-						navigation.navigate(DAILY_WORKOUT_ROUTE, {
+						navigation.navigate("TodaysWorkout", {
 							desiredWorkoutDuration:
 								desiredWorkoutDurationMin.ABS,
 						})

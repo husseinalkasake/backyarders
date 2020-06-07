@@ -136,7 +136,7 @@ function WorkoutsList({ route, navigation }) {
 
 	return (
 		<SectionList
-			keyExtractor={(item) => item.name}
+			keyExtractor={(item) => item.name + item.type + item.level}
 			sections={sections}
 			renderItem={({ item }) => (
 				<TouchableOpacity

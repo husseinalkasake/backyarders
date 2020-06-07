@@ -3,25 +3,6 @@ import workoutTypes, { absLevels } from "./workoutTypes";
 
 export const NOT_APPLICABLE = "NA";
 
-// const workouts_OLD = [
-// 	{
-// 		level: workoutLevels.BEGINNER,
-// 		type: workoutTypes.LEGS,
-// 		name: "Basic Squat",
-// 		sourceMain: "",
-// 		sourceEdu: "/Bj2d",
-// 		muscles: "Glutes/Hamstrings",
-// 	},
-// 	{
-// 		level: workoutLevels.GIVE_ME_A_CHALLENGE,
-// 		type: workoutTypes.PUSH,
-// 		name: "Clap Push-up",
-// 		sourceMain: "/Bj2d",
-// 		sourceEdu: NOT_APPLICABLE,
-// 		muscles: "Chest/Shoulders",
-// 	},
-// ];
-
 const workouts = [
 	{
 		type: workoutTypes.PUSH,
@@ -303,34 +284,30 @@ const workouts = [
 		sourceEdu: "/APOw",
 		muscles: "Biceps",
 	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.BEGINNER,
-		name: "back widows",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/back widows",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_back widows",
-		muscles: "Back",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.BEGINNER,
-		name: "lat slides",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/lat slides",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_lat slides",
-		muscles: "Back",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.BEGINNER,
-		name: "superman",
-		sourceMain: "/Users/nickmourad/Desktop/backyarders vids/pull/superman",
-		sourceEdu: "/Users/nickmourad/Desktop/backyarders vids/pull/E_superman",
-		muscles: "Back",
-	},
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.BEGINNER,
+	// 	name: "back widows",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.BEGINNER,
+	// 	name: "lat slides",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.BEGINNER,
+	// 	name: "superman",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
 	{
 		type: workoutTypes.PULL,
 		level: workoutLevels.INTERMEDIATE,
@@ -363,53 +340,46 @@ const workouts = [
 		sourceEdu: NOT_APPLICABLE,
 		muscles: "Back/biceps",
 	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.INTERMEDIATE,
-		name: "water jug curls",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/water jug curls",
-		sourceEdu: NOT_APPLICABLE,
-		muscles: "Biceps",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.INTERMEDIATE,
-		name: "wide water jug curls",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/wide water jug curls",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_wide water jug curls",
-		muscles: "Biceps",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.INTERMEDIATE,
-		name: "back widows",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/back widows",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_back widows",
-		muscles: "Back",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.INTERMEDIATE,
-		name: "lat slides",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/lat slides",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_lat slides",
-		muscles: "Back",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.INTERMEDIATE,
-		name: "superman",
-		sourceMain: "/Users/nickmourad/Desktop/backyarders vids/pull/superman",
-		sourceEdu: "/Users/nickmourad/Desktop/backyarders vids/pull/E_superman",
-		muscles: "Back",
-	},
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.INTERMEDIATE,
+	// 	name: "water jug curls",
+	// 	sourceMain: "",
+	// 	sourceEdu: NOT_APPLICABLE,
+	// 	muscles: "Biceps",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.INTERMEDIATE,
+	// 	name: "wide water jug curls",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Biceps",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.INTERMEDIATE,
+	// 	name: "back widows",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.INTERMEDIATE,
+	// 	name: "lat slides",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.INTERMEDIATE,
+	// 	name: "superman",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
 	{
 		type: workoutTypes.PULL,
 		level: workoutLevels.EXPERIENCED,
@@ -450,53 +420,46 @@ const workouts = [
 		sourceEdu: NOT_APPLICABLE,
 		muscles: "Back/biceps",
 	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.EXPERIENCED,
-		name: "water jug curls",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/water jug curls",
-		sourceEdu: NOT_APPLICABLE,
-		muscles: "Biceps",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.EXPERIENCED,
-		name: "wide water jug curls",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/wide water jug curls",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_wide water jug curls",
-		muscles: "Biceps",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.EXPERIENCED,
-		name: "back widows",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/back widows",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_back widows",
-		muscles: "Back",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.EXPERIENCED,
-		name: "lat slides",
-		sourceMain:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/lat slides",
-		sourceEdu:
-			"/Users/nickmourad/Desktop/backyarders vids/pull/E_lat slides",
-		muscles: "Back",
-	},
-	{
-		type: workoutTypes.PULL,
-		level: workoutLevels.EXPERIENCED,
-		name: "superman",
-		sourceMain: "/Users/nickmourad/Desktop/backyarders vids/pull/superman",
-		sourceEdu: "/Users/nickmourad/Desktop/backyarders vids/pull/E_superman",
-		muscles: "Back ",
-	},
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.EXPERIENCED,
+	// 	name: "water jug curls",
+	// 	sourceMain: "",
+	// 	sourceEdu: NOT_APPLICABLE,
+	// 	muscles: "Biceps",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.EXPERIENCED,
+	// 	name: "wide water jug curls",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Biceps",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.EXPERIENCED,
+	// 	name: "back widows",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.EXPERIENCED,
+	// 	name: "lat slides",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back",
+	// },
+	// {
+	// 	type: workoutTypes.PULL,
+	// 	level: workoutLevels.EXPERIENCED,
+	// 	name: "superman",
+	// 	sourceMain: "",
+	// 	sourceEdu: "",
+	// 	muscles: "Back ",
+	// },
 	{
 		type: workoutTypes.PULL,
 		level: workoutLevels.GIVE_ME_A_CHALLENGE,

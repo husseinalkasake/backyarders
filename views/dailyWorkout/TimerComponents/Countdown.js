@@ -14,7 +14,7 @@ const Countdown = (props) => {
 	return (
 		<Text
 			style={[
-				props.size == "big" ? styles.textBig : styles.textSmall,
+				props.size === "big" ? styles.textBig : styles.textSmall,
 				props.style,
 			]}>
 			{mins}:{paddedZero}
