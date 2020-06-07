@@ -71,6 +71,11 @@ function QuestionnaireDesiredDifficulty({
 							currentOption={currentDesiredDifficulty}
 							text="Experienced"
 						/>
+						<QuestionnaireDesiredDifficultyOption
+							option={desiredDifficulty.GIVE_ME_A_CHALLENGE}
+							currentOption={currentDesiredDifficulty}
+							text="Give me a challenge"
+						/>
 					</View>
 				</View>
 			</View>

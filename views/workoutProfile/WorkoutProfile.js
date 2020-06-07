@@ -12,7 +12,7 @@ import { ScrollView, Text, StyleSheet } from "react-native";
 
 import WorkoutVideo from "./WorkoutVideo";
 
-import { NOT_APPLICABLE } from "../../resources/workoutTypes";
+import { NOT_APPLICABLE } from "../../resources/workouts";
 
 const styles = StyleSheet.create({
 	container: {
@@ -48,6 +48,7 @@ function WorkoutProfile({ route, navigation }) {
 			</Text>
 
 			<WorkoutVideo
+				isEducational={true}
 				source={
 					workout.sourceEdu === NOT_APPLICABLE
 						? { uri: `https://gdurl.com${workout.sourceMain}` }

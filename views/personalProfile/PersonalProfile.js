@@ -46,7 +46,7 @@ class PersonalProfile extends React.Component {
 		const items = [];
 		for (const [key, value] of Object.entries(object)) {
 			if (value < 0) continue;
-			const text = key.toLowerCase();
+			const text = key.replace("_", " ").toLowerCase();
 			items.push(
 				<Picker.Item
 					label={text.charAt(0).toUpperCase() + text.slice(1)}

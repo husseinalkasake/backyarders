@@ -13,7 +13,8 @@ import {
 	StyleSheet,
 } from "react-native";
 
-import { workouts, workoutLevels } from "../../resources/workoutTypes";
+import workoutLevels from "../../resources/desiredDifficulty";
+import workouts from "../../resources/workouts";
 
 const styles = StyleSheet.create({
 	container: {
@@ -45,17 +46,17 @@ const sortNextBy = {
 function getBackgroundColor(level) {
 	let backgroundColor;
 	switch (level) {
-		case workoutLevels[1]:
+		case workoutLevels.INTERMEDIATE:
 			backgroundColor = "rgba(0, 255, 0, 0.3)";
 			break;
-		case workoutLevels[2]:
+		case workoutLevels.EXPERIENCED:
 			backgroundColor = "rgba(0, 0, 255, 0.3)";
 			break;
-		case workoutLevels[3]:
+		case workoutLevels.GIVE_ME_A_CHALLENGE:
 			backgroundColor = "rgba(255, 0, 0, 0.3)";
 			break;
 		default:
-			// case workoutLevels[0]:
+			// case workoutLevels.BEGINNER:
 			backgroundColor = "#fff";
 	}
 	return { backgroundColor };
@@ -100,6 +101,7 @@ function WorkoutsList({ route, navigation }) {
 			}));
 	} else if (sortBy === SORT_BY.TYPE) {
 		const workoutsByType = workouts.reduce((obj, workout) => {
+			// TODO make this read the key of the type instead of the value and tern it to lowet case
 			const type = workout.type;
 
 			return {
@@ -134,7 +136,7 @@ function WorkoutsList({ route, navigation }) {
 
 	return (
 		<SectionList
-			keyExtractor={(item) => item.name}
+			keyExtractor={(item) => item.name + item.type + item.level}
 			sections={sections}
 			renderItem={({ item }) => (
 				<TouchableOpacity
