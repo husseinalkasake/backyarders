@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		left: "28%",
 	},
+	//TODO: HAVE MORE GENERAL STYLES LIKE THIS TO BE REUSED
+	bold: {
+		fontWeight: "bold",
+	},
 });
 
 export default styles;
