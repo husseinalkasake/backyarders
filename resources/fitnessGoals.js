@@ -1,7 +1,13 @@
+export const fitnessGoalsEnum = {
+	BULK: "Add muscle mass",
+	STRENGTH: "Increase strength / bodyweight",
+	WEIGHT_LOSS: "Lose weight and tone muscles",
+};
+
 const fitnessGoals = [
-	"Add muscle mass",
-	"Increase strength / bodyweight",
-	"Lose weight and tone muscles",
+	fitnessGoalsEnum.BULK,
+	fitnessGoalsEnum.STRENGTH,
+	fitnessGoalsEnum.WEIGHT_LOSS,
 ];
 
 export default fitnessGoals;

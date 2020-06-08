@@ -9,6 +9,7 @@ import {
 	UPDATE_APP_FIRST_TIME_USAGE,
 } from "./action_types";
 import defaultState from "./state";
+import getWorkoutSequence from "../resources/workoutSequence";
 
 const rootReducer = (state = defaultState, action) => {
 	switch (action.type) {
@@ -41,12 +42,21 @@ const rootReducer = (state = defaultState, action) => {
 			return {
 				...state,
 				desiredDifficulty: action.desiredDifficulty,
+				workoutSequence: getWorkoutSequence(
+					state.fitnessGoals[0],
+					action.desiredDifficulty
+				),
 			};
 		case UPDATE_FITNESS_GOALS:
+			const fitnessGoals = action.fitnessGoals.data.map(
+				(goal) => goal.label
+			);
 			return {
 				...state,
-				fitnessGoals: action.fitnessGoals.data.map(
-					(goal) => goal.label
+				fitnessGoals,
+				workoutSequence: getWorkoutSequence(
+					fitnessGoals[0],
+					state.desiredDifficulty
 				),
 			};
 		case UPDATE_APP_FIRST_TIME_USAGE:
