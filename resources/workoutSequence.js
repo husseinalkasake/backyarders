@@ -107,7 +107,6 @@ function getWorkoutSequence(fitnessGoal, desiredDifficulty) {
 
 	fitnessGoalKey = getKey(fitnessGoalsEnum, fitnessGoal);
 	desiredDifficultyKey = getKey(desiredDifficultyEnum, desiredDifficulty);
-	debugger;
 	return workoutSequence[fitnessGoalKey][desiredDifficultyKey];
 }
 
