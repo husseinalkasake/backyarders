@@ -31,6 +31,7 @@ class WorkoutVideo extends React.Component {
 	// loads the video to be played
 	loadVideoAsync = async () => {
 		await this.video.loadAsync(this.props.source);
+		this.setState({ isReady: true });
 	};
 
 	// load the video when component mounts

@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
-import { CustomStyleSheet } from "../../styles";
+import { CustomStyleSheet } from "../../../styles";
 
 const styles = CustomStyleSheet({
 	textSmall: { fontSize: 30 },

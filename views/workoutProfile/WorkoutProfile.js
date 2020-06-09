@@ -8,17 +8,35 @@ It thens renders the info and the video.
 */
 
 import React from "react";
-import { ScrollView, Text, StyleSheet } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 
 import WorkoutVideo from "./WorkoutVideo";
 
 import { NOT_APPLICABLE } from "../../resources/workouts";
-import { CustomStyleSheet } from "../../styles";
+import { CustomStyleSheet, colors } from "../../styles";
+import capitalizeFirstLetterOfEveryWord from "../../utils/capitalizeFirstLetterOfEveryWord";
 
 const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
+	},
+	workoutDetails: {
+		height: "10%",
+		flexDirection: "row",
+		justifyContent: "space-around",
+		backgroundColor: colors.MAIN_COLOR,
+	},
+	workoutDetail: {
+		flexDirection: "column",
+		justifyContent: "center",
+	},
+	workoutDetailText: {
+		color: "white",
+		alignSelf: "center",
+	},
+	title: {
+		fontSize: 20,
 	},
 });
 
@@ -27,26 +45,56 @@ function WorkoutProfile({ route, navigation }) {
 	const { workout } = route.params;
 
 	navigation.setOptions({
-		title: workout.name,
+		title: capitalizeFirstLetterOfEveryWord(workout.name),
 	});
 
 	return (
 		<ScrollView style={styles.container}>
-			<Text>
-				<Text>Level: </Text>
-				<Text>{workout.level}</Text>
-			</Text>
+			<View style={styles.workoutDetails}>
+				<View style={styles.workoutDetail}>
+					<Text
+						style={[
+							styles.bold,
+							styles.workoutDetailText,
+							styles.title,
+						]}>
+						Level
+					</Text>
+					<Text style={[styles.bold, styles.workoutDetailText]}>
+						{workout.level}
+					</Text>
+				</View>
+				<View style={styles.workoutDetail}>
+					<Text
+						style={[
+							styles.bold,
+							styles.workoutDetailText,
+							styles.title,
+						]}>
+						Type
+					</Text>
+					<Text style={[styles.bold, styles.workoutDetailText]}>
+						{workout.type}
+					</Text>
+				</View>
 
-			<Text>
-				<Text>Type: </Text>
-				<Text>{workout.type}</Text>
-			</Text>
-
-			{/* TODO cut these muscles up and display them as an array (string manipulation) */}
-			<Text>
-				<Text>Muscles under tension: </Text>
-				<Text>{workout.muscles}</Text>
-			</Text>
+				{/* TODO cut these muscles up and display them as an array (string manipulation) */}
+				<View style={styles.workoutDetail}>
+					<Text
+						style={[
+							styles.bold,
+							styles.workoutDetailText,
+							styles.title,
+						]}>
+						Muscles
+					</Text>
+					<Text style={[styles.bold, styles.workoutDetailText]}>
+						{capitalizeFirstLetterOfEveryWord(
+							workout.muscles.split("/").join(" | ")
+						)}
+					</Text>
+				</View>
+			</View>
 
 			<WorkoutVideo
 				isEducational={true}

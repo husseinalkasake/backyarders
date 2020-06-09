@@ -1,10 +1,10 @@
 import React from "react";
 import { Animated, Dimensions, Easing } from "react-native";
-import { CustomStyleSheet } from "../../styles";
+import { CustomStyleSheet, colors } from "../../styles";
 
 const styles = CustomStyleSheet({
 	progress: {
-		backgroundColor: "blue",
+		backgroundColor: colors.MAIN_COLOR,
 		height: 10,
 		width: 2,
 	},

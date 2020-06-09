@@ -66,7 +66,7 @@ class PersonalProfile extends React.Component {
 				<Button
 					style={styles.editButton}
 					onPress={() => this.setState({ isEdit: !isEdit })}>
-					<Text>Edit</Text>
+					<Text style={styles.bold}>Edit</Text>
 				</Button>
 			),
 		});
