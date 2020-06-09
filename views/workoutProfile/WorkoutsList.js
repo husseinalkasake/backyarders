@@ -5,18 +5,16 @@ it should import a big data structure that requires the .json workout files.
 */
 
 import React from "react";
-import {
-	SectionList,
-	Text,
-	TouchableOpacity,
-	Button,
-	StyleSheet,
-} from "react-native";
+import { Button, Text } from "native-base";
+import { SectionList, TouchableOpacity, View } from "react-native";
 
 import workoutLevels from "../../resources/desiredDifficulty";
 import workouts from "../../resources/workouts";
+import { CustomStyleSheet, colors } from "../../styles";
+import capitalizeFirstLetterOfEveryWord from "../../utils/capitalizeFirstLetterOfEveryWord";
+import { absLevels } from "../../resources/workoutTypes";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",
@@ -25,6 +23,18 @@ const styles = StyleSheet.create({
 	},
 	row: {
 		padding: 20,
+	},
+	sortButton: {
+		position: "absolute",
+		right: 12,
+		backgroundColor: colors.MAIN_COLOR,
+	},
+	sectionHeader: {
+		paddingLeft: 12,
+		paddingVertical: 12,
+		fontSize: 24,
+		color: "white",
+		backgroundColor: colors.MAIN_COLOR,
 	},
 });
 
@@ -42,28 +52,32 @@ const sortNextBy = {
 	level: SORT_BY.ALPHABETICAL,
 };
 
-// TODO cahnge this to colors we actually like
+// TODO change this to colors we actually like
 function getBackgroundColor(level) {
 	let backgroundColor;
 	switch (level) {
 		case workoutLevels.INTERMEDIATE:
-			backgroundColor = "rgba(0, 255, 0, 0.3)";
+			backgroundColor = "#E6771680";
 			break;
 		case workoutLevels.EXPERIENCED:
-			backgroundColor = "rgba(0, 0, 255, 0.3)";
+		case absLevels.HARD:
+			backgroundColor = "#963A9280";
 			break;
 		case workoutLevels.GIVE_ME_A_CHALLENGE:
-			backgroundColor = "rgba(255, 0, 0, 0.3)";
+			backgroundColor = "#CD025C80";
 			break;
 		default:
-			// case workoutLevels.BEGINNER:
 			backgroundColor = "#fff";
 	}
 	return { backgroundColor };
 }
 
 // renderes the headers of each section in the section list
-const renderSectionHeader = ({ section }) => <Text>{section.title}</Text>;
+const renderSectionHeader = ({ section }) => (
+	<Text style={[styles.bold, styles.sectionHeader]}>
+		{capitalizeFirstLetterOfEveryWord(section.title)}
+	</Text>
+);
 
 function WorkoutsList({ route, navigation }) {
 	const { sortBy } = route.params;
@@ -73,13 +87,14 @@ function WorkoutsList({ route, navigation }) {
 		title: "Workouts",
 		headerRight: () => (
 			<Button
-				title="Sort"
+				style={styles.sortButton}
 				onPress={() =>
 					navigation.navigate("WorkoutsList", {
 						sortBy: sortNextBy[sortBy],
 					})
-				}
-			/>
+				}>
+				<Text style={styles.bold}>Sort</Text>
+			</Button>
 		),
 	});
 
@@ -144,7 +159,9 @@ function WorkoutsList({ route, navigation }) {
 					onPress={() =>
 						navigation.navigate("WorkoutProfile", { workout: item })
 					}>
-					<Text>{item.name}</Text>
+					<Text style={styles.bold}>
+						{capitalizeFirstLetterOfEveryWord(item.name)}
+					</Text>
 				</TouchableOpacity>
 			)}
 			renderSectionHeader={renderSectionHeader}

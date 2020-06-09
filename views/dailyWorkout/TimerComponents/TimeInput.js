@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
+import { CustomStyleSheet } from "../../../styles";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flexDirection: "row",
 		marginTop: 10,

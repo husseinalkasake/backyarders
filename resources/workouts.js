@@ -175,7 +175,7 @@ const workouts = [
 	{
 		type: workoutTypes.PUSH,
 		level: workoutLevels.GIVE_ME_A_CHALLENGE,
-		name: "1 hand pushups.mov",
+		name: "1 hand pushups",
 		sourceMain: "/G4zd",
 		sourceEdu: NOT_APPLICABLE,
 		muscles: "Chest/triceps/shoulders",
