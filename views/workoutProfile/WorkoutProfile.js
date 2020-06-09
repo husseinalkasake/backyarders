@@ -78,7 +78,6 @@ function WorkoutProfile({ route, navigation }) {
 					</Text>
 				</View>
 
-				{/* TODO cut these muscles up and display them as an array (string manipulation) */}
 				<View style={styles.workoutDetail}>
 					<Text
 						style={[

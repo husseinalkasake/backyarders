@@ -12,6 +12,7 @@ import workoutLevels from "../../resources/desiredDifficulty";
 import workouts from "../../resources/workouts";
 import { CustomStyleSheet, colors } from "../../styles";
 import capitalizeFirstLetterOfEveryWord from "../../utils/capitalizeFirstLetterOfEveryWord";
+import { absLevels } from "../../resources/workoutTypes";
 
 const styles = CustomStyleSheet({
 	container: {
@@ -59,6 +60,7 @@ function getBackgroundColor(level) {
 			backgroundColor = "#E6771680";
 			break;
 		case workoutLevels.EXPERIENCED:
+		case absLevels.HARD:
 			backgroundColor = "#963A9280";
 			break;
 		case workoutLevels.GIVE_ME_A_CHALLENGE:
