@@ -13,8 +13,9 @@ import { ScrollView, Text, StyleSheet } from "react-native";
 import WorkoutVideo from "./WorkoutVideo";
 
 import { NOT_APPLICABLE } from "../../resources/workouts";
+import { CustomStyleSheet } from "../../styles";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",

@@ -6,16 +6,11 @@ It accepts two props:
 */
 
 import React from "react";
-import {
-	TouchableHighlight,
-	View,
-	Dimensions,
-	StyleSheet,
-	Text,
-} from "react-native";
+import { TouchableHighlight, View, Dimensions, Text } from "react-native";
 import { Video } from "expo-av";
+import { CustomStyleSheet } from "../../styles";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	loading: {
 		fontStyle: "italic",
 	},

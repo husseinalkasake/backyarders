@@ -3,10 +3,11 @@ This screen is a middle ware compoenent function to render the WorkoutRoutinePla
 */
 
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View } from "react-native";
 import WorkoutRoutinePlayer from "./WorkoutRoutinePlayer";
+import { CustomStyleSheet } from "../../styles";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",

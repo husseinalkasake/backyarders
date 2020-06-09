@@ -5,18 +5,13 @@ it should import a big data structure that requires the .json workout files.
 */
 
 import React from "react";
-import {
-	SectionList,
-	Text,
-	TouchableOpacity,
-	Button,
-	StyleSheet,
-} from "react-native";
+import { SectionList, Text, TouchableOpacity, Button } from "react-native";
 
 import workoutLevels from "../../resources/desiredDifficulty";
 import workouts from "../../resources/workouts";
+import { CustomStyleSheet } from "../../styles";
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",

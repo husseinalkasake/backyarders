@@ -9,16 +9,16 @@ It then displays the videos and breaks till the workout is over.
 */
 
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 import { connect } from "react-redux";
 
 import { Countdown, TimerToggleButton } from "./TimerComponents";
 import { Timer, vibrate } from "./utils";
 import WorkoutVideo from "../workoutProfile/WorkoutVideo";
-// import ProgressBar from "./ProgressBarAnimated";
 import WorkoutRoutine from "./workoutRoutine";
 import workoutTypes from "../../resources/workoutTypes";
 import desiredWorkoutDurationMin from "../../resources/desiredWorkoutDurationMin";
+import { CustomStyleSheet } from "../../styles";
 
 class WorkoutRoutinePlayer extends React.Component {
 	constructor(props) {
@@ -183,7 +183,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(WorkoutRoutinePlayer);
 
-const styles = StyleSheet.create({
+const styles = CustomStyleSheet({
 	container: {
 		flex: 1,
 		paddingTop: 150,
