@@ -55,8 +55,8 @@ function WorkoutProfile({ route, navigation }) {
 					<Text
 						style={[
 							styles.bold,
-							styles.workoutDetailText,
 							styles.title,
+							styles.workoutDetailText,
 						]}>
 						Level
 					</Text>
@@ -68,8 +68,8 @@ function WorkoutProfile({ route, navigation }) {
 					<Text
 						style={[
 							styles.bold,
-							styles.workoutDetailText,
 							styles.title,
+							styles.workoutDetailText,
 						]}>
 						Type
 					</Text>
@@ -83,8 +83,8 @@ function WorkoutProfile({ route, navigation }) {
 					<Text
 						style={[
 							styles.bold,
-							styles.workoutDetailText,
 							styles.title,
+							styles.workoutDetailText,
 						]}>
 						Muscles
 					</Text>

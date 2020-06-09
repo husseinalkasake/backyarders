@@ -56,15 +56,12 @@ function getBackgroundColor(level) {
 	let backgroundColor;
 	switch (level) {
 		case workoutLevels.INTERMEDIATE:
-			// backgroundColor = "rgba(0, 255, 0, 0.3)";
 			backgroundColor = "#E6771680";
 			break;
 		case workoutLevels.EXPERIENCED:
-			// backgroundColor = "rgba(0, 0, 255, 0.3)";
 			backgroundColor = "#963A9280";
 			break;
 		case workoutLevels.GIVE_ME_A_CHALLENGE:
-			// backgroundColor = "rgba(255, 0, 0, 0.3)";
 			backgroundColor = "#CD025C80";
 			break;
 		default:
