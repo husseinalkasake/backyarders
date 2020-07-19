@@ -177,7 +177,7 @@ class WorkoutRoutinePlayer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	weeksWorkouts: state.weeksWorkouts,
+	weeksWorkouts: state.workoutSequence,
 	desiredDifficulty: state.desiredDifficulty,
 });
 
