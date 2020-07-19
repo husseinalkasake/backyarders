@@ -3,7 +3,7 @@
 		"name": "Backyarders",
 		"slug": "backyarders",
 		"platforms": ["ios", "android", "web"],
-		"version": "1.0.1",
+		"version": "2.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/backyarders_icon.png",
 		"splash": {
@@ -17,11 +17,11 @@
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
 			"bundleIdentifier": "com.backyarders.backyarders",
-			"buildNumber": "0.0.1"
+			"buildNumber": "2.0.0"
 		},
 		"android": {
 			"package": "com.backyarders.backyarders",
-			"versionCode": 1
+			"versionCode": 2
 		}
 	}
 }
