@@ -1,9 +1,9 @@
 {
 	"expo": {
-		"name": "backyarders",
+		"name": "Backyarders",
 		"slug": "backyarders",
 		"platforms": ["ios", "android", "web"],
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"orientation": "portrait",
 		"icon": "./assets/backyarders_icon.png",
 		"splash": {
